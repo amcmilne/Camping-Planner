@@ -1,4 +1,4 @@
 -- Drops the passport_demo if it exists currently --
-DROP DATABASE IF EXISTS passport_demo;
+DROP DATABASE IF EXISTS campaignPlanner_DB;
 -- Creates the "passport_demo" database --
-CREATE DATABASE passport_demo;
+CREATE DATABASE campaignPlanner_DB;

@@ -31,9 +31,9 @@ parks.data.forEach((park) => {
     "," +
     coords[1] +
     "," +
-    "'" +
+    '"' +
     state +
-    "'" +
+    '"' +
     "\n";
   //csv file   // url,name,address,lat,lng,state,weather\nurl,name,
 });

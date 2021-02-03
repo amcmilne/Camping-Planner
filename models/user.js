@@ -36,6 +36,9 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.EquipmentList, {
       onDelete: 'cascade',
     });
+    User.hasMany(models.FavoriteLocations, {
+      onDelete: 'cascade',
+    });
   };
 
   return User;

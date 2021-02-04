@@ -1,12 +1,4 @@
 form.signup,
 form.login {
-  margin-top: 50px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-}
-body {
-  background: lightblue;
+  margin-top: 80px;
 }

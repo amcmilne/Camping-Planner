@@ -28,16 +28,16 @@ module.exports = function(app) {
   app.get("/welcome", isAuthenticated, (req, res) => {
     res.render("welcome");
   });
-  app.get("/locations/:stateId", (req, res) => {
+  app.get("/locations/:stateId", isAuthenticated, (req, res) => {
     let stateId = req.params.stateId;
     res.render("locations", { stateID: stateId });
   });
-  app.get("/locations/:stateId/:parkId", (req, res) => {
+  app.get("/locations/:stateId/:parkId", isAuthenticated, (req, res) => {
     let parkId = req.params.parkId;
     let stateId = req.params.stateId;
     res.render("location", { parkId: parkId, stateID: stateId });
   });
-  app.get("/favorite-parks", (req, res) => {
+  app.get("/favorite-parks", isAuthenticated, (req, res) => {
     res.render("favorite-parks");
   });
 };

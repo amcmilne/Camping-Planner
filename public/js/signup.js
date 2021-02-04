@@ -5,11 +5,11 @@ $(document).ready(() => {
   const passwordInput = $("input#password-input");
 
   // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", event => {
+  signUpForm.on("submit", (event) => {
     event.preventDefault();
     const userData = {
       email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      password: passwordInput.val().trim(),
     };
 
     if (!userData.email || !userData.password) {
@@ -26,10 +26,10 @@ $(document).ready(() => {
   function signUpUser(email, password) {
     $.post("/api/signup", {
       email: email,
-      password: password
+      password: password,
     })
       .then(() => {
-        window.location.replace("/members");
+        window.location.replace("/welcome");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

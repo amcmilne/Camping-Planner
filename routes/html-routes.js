@@ -37,4 +37,7 @@ module.exports = function(app) {
     let stateId = req.params.stateId;
     res.render("location", { parkId: parkId, stateID: stateId });
   });
+  app.get("/favorite-parks", (req, res) => {
+    res.render("favorite-parks");
+  });
 };

@@ -1,43 +1,22 @@
 {{!-- home page
-    -Div States
-    dropdown with list of states
+-Div States
+dropdown with list of states
 
 
- --}}
-
- <div class="dropdown">
-  <div class="dropdown-trigger">
-    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-      <span>Choose a State to View State Parks</span>
-      <span class="icon is-small">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </div>
-  <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-    <div class="dropdown-content">
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-      <a href="#" class="dropdown-item">
-        State
-      </a>
-
-    </div>
-  </div>
-</div>
+--}}
+<ul class="list-group">
+  <li class="list-group-item">OH</li>
+  <li class="list-group-item">KY</li>
+  <li class="list-group-item">NY</li>
+  <li class="list-group-item">WA</li>
+  <li class="list-group-item">VA</li>
+</ul>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  console.log(window.location.pathname)
+  $("li").click((e) => {
+    let stateId = e.target.innerText.toUpperCase();
+    let url = "/locations/" + stateId;
+    window.location.replace(url);
+  });
+</script>

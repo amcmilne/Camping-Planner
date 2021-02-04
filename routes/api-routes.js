@@ -18,7 +18,7 @@ module.exports = function(app) {
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
-  app.post("/api/signup", (req, res) => {
+  app.post("/api/signup", isAuthenticated, (req, res) => {
     db.User.create({
       email: req.body.email,
       password: req.body.password,
@@ -48,7 +48,7 @@ module.exports = function(app) {
       });
     }
   });
-  app.post("/api/send_email", isAuthenticated, (req, res) => {
+  app.post("/api/send_email", (req, res) => {
     const data = {
       from: process.env.mailgun_from_address,
       to: req.body.to,
@@ -67,17 +67,21 @@ module.exports = function(app) {
       res.json(body);
     });
   });
-  app.get("/api/park_equipment", isAuthenticated, (req, res) => {
+  app.get("/api/park_equipment", (req, res) => {
     db.Parks.getAll(req.user.email, stateId, (data) => {
       res.render("location", data);
     });
   });
-  app.put("/api/park_equipment/update_equipment_need_status", (req, res) => {
-    db.Parks_Equipment.updateNeedStatus(equipment_list, (data) => {
-      // accepts as parameter a list of equipment ids from the checklist
-      // for each of the equipment needs to change Need status to true
-    });
-  });
+  app.put(
+    "/api/park_equipment/update_equipment_need_status",
+    isAuthenticated,
+    (req, res) => {
+      db.Parks_Equipment.updateNeedStatus(equipment_list, (data) => {
+        // accepts as parameter a list of equipment ids from the checklist
+        // for each of the equipment needs to change Need status to true
+      });
+    }
+  );
   app.post("/api/equipment/add_one", (req, res) => {
     db.Parks_Equipment.addOne(equipment_name, (data) => {
       // accepts as parameter a new equipment

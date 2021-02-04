@@ -1,0 +1,15 @@
+<ul class="list-group">
+    <li class="list-group-item disabled" state="OH" parkId="438">1 Favorite Park</li>
+    <li class="list-group-item">2 Favorite Park</li>
+    <li class="list-group-item">3 Favorite Park</li>
+    <li class="list-group-item">4 Favorite Park</li>
+    <li class="list-group-item">5 Favorite Park</li>
+</ul>
+<script>
+    $(".list-group-item").click((e) => {
+        stateId = "NJ"
+        parkId = 434
+        let url = "locations/" + stateId + "/" + parkId;
+        window.location.replace(url);
+    });
+</script>

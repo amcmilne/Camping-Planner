@@ -31,6 +31,5 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
-
   return User;
 };

@@ -1,6 +1,5 @@
-// Creating our Location model
 module.exports = function(sequelize, DataTypes) {
-  const Equipment = sequelize.define("Equipment", {
+  const EquipmentList = sequelize.define("Equipment", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -18,18 +17,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true,
     },
-
-    owned: {
-      type: DataTypes.BOOLEAN,
-      default: false,
-    },
   });
-  Equipment.associate = (models) => {
-    Equipment.belongsTo(models.EquipmentList, {
-      foreignKey: {
-        allowNull: false,
-      },
+  EquipmentList.associate = (models) => {
+    EquipmentList.hasMany(models.Equipment, {
+      onDelete: "cascade",
     });
   };
-  return Equipment;
+
+  return EquipmentList;
 };

@@ -10,7 +10,7 @@ module.exports = function(app) {
   app.get("/", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.render("/welcome");
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
@@ -18,23 +18,23 @@ module.exports = function(app) {
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.render("/welcome");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-  });
   app.get("/welcome", isAuthenticated, (req, res) => {
-    res.render("locations");
+    res.render("welcome");
   });
-  app.get("/locations", isAuthenticated, (req, res) => {
-    res.render("location");
+  app.get("/locations/:stateId", (req, res) => {
+    let stateId = req.params.stateId;
+    res.render("locations", { stateID: stateId });
   });
-  app.get("/location", isAuthenticated, (req, res) => {
-    res.render("location");
+  app.get("/locations/:stateId/:parkId", (req, res) => {
+    let parkId = req.params.parkId;
+    let stateId = req.params.stateId;
+    res.render("location", { parkId: parkId, stateID: stateId });
   });
 };

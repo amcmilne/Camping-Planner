@@ -18,11 +18,11 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
     },
   });
-  EquipmentList.associate = (models) => {
-    EquipmentList.hasMany(models.Equipment, {
-      onDelete: "cascade",
-    });
-  };
+  // EquipmentList.associate = (models) => {
+  //   EquipmentList.hasMany(models.Equipment, {
+  //     onDelete: "cascade",
+  //   });
+  // };
 
   return EquipmentList;
 };

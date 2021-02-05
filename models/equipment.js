@@ -25,12 +25,12 @@ module.exports = function(sequelize, DataTypes) {
       default: false,
     },
   });
-  // Equipment.associate = (models) => {
-  //   Equipment.belongsTo(models.EquipmentList, {
-  //     foreignKey: {
-  //       allowNull: false,
-  //     },
-  //   });
-  // };
+  Equipment.associate = (models) => {
+    Equipment.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
   return Equipment;
 };

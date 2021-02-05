@@ -31,6 +31,12 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       },
     });
+    Equipment.belongsTo(models.Location, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
+
   return Equipment;
 };

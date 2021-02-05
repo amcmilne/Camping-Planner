@@ -24,13 +24,19 @@ info such as: description-address-website and the weather(based on ZipCode
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 class="card-header">Park Name <div class="container col-md-2 clearfix">
+                <h1 class="card-header">{{parkName}} <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
                 <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid
-                        atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
-                        voluptate voluptatibus possimus, veniam magni quis!</p>
+                    <h2>State: {{state}}</h2>
+                    <h2>Address: {{address}}</h2>
+                    <h2>Website: {{url}}</h2>
+                    <br>
+                    <h2>Park Description</h2>
+                    <p>{{parkDescription}}</p>
+                    <br>
+                    <h2>Weather Description</h2>
+                    <p>{{weatherDescription}}</p>
 
                 </div>
 

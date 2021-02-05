@@ -46,5 +46,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
   });
+
+  Location.associate = (models) => {
+    Location.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
+
   return Location;
 };

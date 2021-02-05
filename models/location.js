@@ -41,6 +41,14 @@ module.exports = function(sequelize, DataTypes) {
       scale: 8,
     },
 
+    description: {
+      type: DataTypes.TEXT,
+    },
+
+    weather_description: {
+      type: DataTypes.TEXT,
+    },
+
     state: {
       type: DataTypes.STRING,
       allowNull: false,

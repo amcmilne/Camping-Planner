@@ -31,5 +31,14 @@ module.exports = function(sequelize, DataTypes) {
       },
     });
   };
+
+  Equipment.associate = (models) => {
+    Equipment.belongsTo(models.Location, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
+  
   return Equipment;
 };

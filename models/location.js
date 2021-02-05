@@ -55,5 +55,11 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
+  Location.associate = (models) => {
+    Location.hasMany(models.Equipment, {
+      onDelete: 'cascade',
+    });
+  };
+
   return Location;
 };

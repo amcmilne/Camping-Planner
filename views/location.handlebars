@@ -29,6 +29,17 @@ info such as: description-address-website and the weather(based on ZipCode
         transition: 0.05s ease-out;
     }
 
+    .fa-paper-plane:hover {
+        font-size: 1.1em;
+        transition: 0.05s ease-out;
+    }
+
+    .fa-paper-plane {
+        float: right;
+        color: violet;
+        margin-right: 10px;
+    }
+
     .heart {
         float: right;
         font-size: 25px;
@@ -56,7 +67,7 @@ info such as: description-address-website and the weather(based on ZipCode
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 class="card-header">{{parkName}}<i class="heart fa fa-heart-o"></i>
+                <h1 class="card-header">{{parkName}}<i class="heart fa fa-heart-o" title="Email Myself"></i>
                     <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
@@ -90,7 +101,7 @@ info such as: description-address-website and the weather(based on ZipCode
 
 
             <div class="card my-4">
-                <h5 class="card-header">Owned equipment List</h5>
+                <h5 class="card-header">Equipment List <i class="fa fa-paper-plane"></i></h5>
                 <div class="card-body">
                     <div class="row">
                         <div>

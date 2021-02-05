@@ -1,11 +1,11 @@
 const fs = require("fs");
 const { fileURLToPath } = require("url");
+const sequelize = require("sequelize");
 
 let rawdata = fs.readFileSync("everypark.json");
 let parks = JSON.parse(rawdata);
 
-let csvString = "url,parkname,address,description,weather_description,state\n";
-/* ,createdAt,updatedAt,UserId\n"; */
+let csvString = "url,parkname,address,description,weather_description,state,createdAt,updatedAt,UserId\n";
 
 console.log(Date.UTC());
 
@@ -28,7 +28,8 @@ parks.data.forEach((park) => {
 
   let weather;
   if (park.weatherInfo) {
-    weather = park.weatherInfo;    
+    weather = park.weatherInfo;
+    weather = weather.replace(/"/g, "'");
   } else {
     weather = "No weather info provided";
   }
@@ -55,12 +56,12 @@ parks.data.forEach((park) => {
     '"' +
     state +
     '"' +
-/*     "," +
-    Date.UTC() +
     "," +
-    Date.UTC() +
+    Date() +
     "," +
-    "null" + */
+    Date() +
+    "," +
+    "null" +
     "\n";
   //csv file   // url,name,address,lat,lng,state,weather\nurl,name,
 });

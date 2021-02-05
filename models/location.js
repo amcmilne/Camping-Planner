@@ -1,3 +1,5 @@
+const { Sequelize } = require(".");
+
 // Creating our Location model
 module.exports = function(sequelize, DataTypes) {
   const Location = sequelize.define("Location", {
@@ -55,6 +57,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
   });
 
   Location.associate = (models) => {

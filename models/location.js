@@ -53,6 +53,13 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       },
     });
+
+    Location.hasMany(models.Equipment, {
+      onDelete: 'cascade',
+    });
+
+    Location.belongsToMany(models.User, { through: 'User_Profiles' });
+
   };
 
   return Location;

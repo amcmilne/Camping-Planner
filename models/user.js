@@ -35,11 +35,9 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.Equipment, {
       onDelete: 'cascade',
     });
+
+    User.belongsToMany(models.Location, { through: 'User_Profiles' });
   };
-  User.associate = (models) => {
-    User.hasMany(models.Location, {
-      onDelete: 'cascade',
-    });
-  };
+
   return User;
 };

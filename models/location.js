@@ -1,3 +1,5 @@
+const { Sequelize } = require(".");
+
 // Creating our Location model
 module.exports = function(sequelize, DataTypes) {
   const Location = sequelize.define("Location", {
@@ -29,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
     },
 
-    latitude: {
+/*     latitude: {
       type: DataTypes.DECIMAL,
       precision: 20,
       scale: 8,
@@ -39,12 +41,23 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       precision: 20,
       scale: 8,
+    }, */
+
+    description: {
+      type: DataTypes.TEXT,
+      length: 'long',
+    },
+
+    weather_description: {
+      type: DataTypes.TEXT,
+      length: 'long',
     },
 
     state: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
   });
 
   Location.associate = (models) => {

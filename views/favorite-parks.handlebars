@@ -1,10 +1,44 @@
-<ul class="list-group">
-    <li class="list-group-item disabled" state="OH" parkId="438">1 Favorite Park</li>
-    <li class="list-group-item">2 Favorite Park</li>
-    <li class="list-group-item">3 Favorite Park</li>
-    <li class="list-group-item">4 Favorite Park</li>
-    <li class="list-group-item">5 Favorite Park</li>
-</ul>
+<style>
+    .overflow-auto {
+        width: 400px;
+        height: 200px;
+    }
+
+    h2,
+    h1 {
+        margin: 10px;
+        text-align: center;
+        color: white;
+    }
+
+    h1 {
+        margin-top: 100px;
+        font-size: 30px;
+    }
+
+    .overflow-auto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .list-group-item {
+        background: rgb(255, 255, 255, 0.3);
+        color: white;
+    }
+</style>
+<div class="overflow-auto">
+    <ul class="list-group">
+        <h2>Choose your favorite Park</h2>
+        <li class="list-group-item" state="OH" parkId="438">1 Favorite Park</li>
+        <li class="list-group-item">2 Favorite Park</li>
+        <li class="list-group-item">3 Favorite Park</li>
+        <li class="list-group-item">4 Favorite Park</li>
+        <li class="list-group-item">5 Favorite Park</li>
+    </ul>
+</div>
 <script>
     $(".list-group-item").click((e) => {
         stateId = "NJ"

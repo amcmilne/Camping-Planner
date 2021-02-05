@@ -1,4 +1,5 @@
 // Creating our Location model
+
 module.exports = function(sequelize, DataTypes) {
   const Equipment = sequelize.define("Equipment", {
     id: {

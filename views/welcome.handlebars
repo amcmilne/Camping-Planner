@@ -1,16 +1,47 @@
-{{!-- home page
--Div States
-dropdown with list of states
+<style>
+  .overflow-auto {
+    width: 200px;
+    height: 200px;
+  }
 
+  h2,
+  h1 {
+    margin: 10px;
+    text-align: center;
+    color: white;
+  }
 
---}}
-<ul class="list-group">
-  <li class="list-group-item">OH</li>
-  <li class="list-group-item">KY</li>
-  <li class="list-group-item">NY</li>
-  <li class="list-group-item">WA</li>
-  <li class="list-group-item">VA</li>
-</ul>
+  h1 {
+    margin-top: 100px;
+    font-size: 30px;
+  }
+
+  .overflow-auto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+  .list-group-item {
+    background: rgb(255, 255, 255, 0.3);
+    color: white;
+  }
+</style>
+<h1>Welcome to Camping Planner!</h1>
+
+<div class="overflow-auto">
+  <h2>Chose a state!</h2>
+  <ul class="list-group">
+    <li class="list-group-item">OH</li>
+    <li class="list-group-item">KY</li>
+    <li class="list-group-item">NY</li>
+    <li class="list-group-item">WA</li>
+    <li class="list-group-item">VA</li>
+  </ul>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   console.log(window.location.pathname)

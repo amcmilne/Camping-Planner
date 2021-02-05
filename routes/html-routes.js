@@ -51,4 +51,11 @@ module.exports = function(app) {
   app.get("/favorite-parks", isAuthenticated, (req, res) => {
     res.render("favorite-parks");
   });
+  app.get(
+    "/locations/:stateId/:parkId/checklist",
+    isAuthenticated,
+    (req, res) => {
+      res.render("checklist");
+    }
+  );
 };

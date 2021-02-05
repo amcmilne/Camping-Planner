@@ -30,15 +30,12 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       },
     });
-  };
-
-  Equipment.associate = (models) => {
     Equipment.belongsTo(models.Location, {
       foreignKey: {
         allowNull: false,
       },
     });
   };
-  
+
   return Equipment;
 };

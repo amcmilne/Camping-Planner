@@ -2,3 +2,70 @@ form.signup,
 form.login {
   margin-top: 80px;
 }
+
+/* Document Body */
+/* body {
+  background-color: #84815d;
+
+} */
+
+/* Hero */
+.hero{
+  background-color: #dbb99c;
+}
+
+
+/* Card Styling */
+#cardBody{
+
+  background-color: #dbb99c;
+}
+#card{
+  background-color: #bc674d;
+
+}
+
+/* Navbar */
+
+.navbar{
+  background-color: #bc674d;
+}
+
+.navbar-item{
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+/* Buttons */
+.button {
+  background-color: #734338;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+#btn-blu,
+.btn-blu {
+  background-color: #a3cfd9;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+/* container */
+.container-content{
+  display: flex;
+  justify-content: center;
+  font-family: 'Yusei Magic', sans-serif;
+
+}
+.container-search {
+  background-color: #dbb99c;
+
+}
+
+.center-item{
+  text-align: center;
+}
+
+.nav-link{
+  color: white;
+}

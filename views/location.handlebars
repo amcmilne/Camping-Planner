@@ -11,14 +11,16 @@ info such as: description-address-website and the weather(based on ZipCode
 
 
 <!-- Page Content -->
-<div class="container">
+<br>
+
+  <div class="container">
 
     <div class="row">
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">Park Name </h1>
+          <p class="title">Park Name </p>
 
             <!-- Blog Post -->
             <div class="card mb-4">
@@ -28,32 +30,45 @@ info such as: description-address-website and the weather(based on ZipCode
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid
                         atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
                         voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="#" class="btn btn-blu">Read More &rarr;</a>
                 </div>
 
             </div>
+
+
+
+
         </div>
+
+
         <div class="col-md-4">
-            <div class="card my-4">
-                <h5 class="card-header">Add equipment for visiting this park</h5>
-                <div class="card-body">
+
+
+            <div class="card my-4" id="card">
+                <h5 class="card-header">Add equipment for this location</h5>
+                <div class="card-body" id="cardBody">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Equipment Name...">
                         <span class="input-group-append">
-                            <button class="btn btn-secondary" type="button">Add</button>
+                            <button class="btn btn-blu" id="btn-blu" type="button">Add</button>
                         </span>
                     </div>
                 </div>
             </div>
 
 
-            <div class="card my-4">
+            <div class="card my-4" id="card">
                 <h5 class="card-header">Equipment List</h5>
                 <div class="card-body">
                     <div class="row">
+                      <div class="col-lg-6">
+                        <ul class="list-group mb-0">
+                            {{> equipment-list}}
+                        </ul>
+                    </div>
                         <div class="col-lg-6">
-                            <ul class="list-group mb-0">
-                                {{> equipment-list}}
+                            <ul class="list-unstyled mb-0">
+
                             </ul>
                         </div>
                         <div class="col-lg-6">
@@ -66,15 +81,15 @@ info such as: description-address-website and the weather(based on ZipCode
             </div>
 
             <!-- Side Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Equipment Checklist</h5>
+            <div class="card my-4" id="card">
+                <h5 class="card-header">Checklist</h5>
                 <div class="card-body">
-                    If you are not sure what equipment you need to visit this location; then, press <a
-                        href="/checklist">here</a> to
-                    select equipment from our checklist
+                    Not sure what equipment you need, then press <span><a href="/checklist">here</a><span> to select
+                            equipment from our checklist
                 </div>
             </div>
 
         </div>
 
+    </div>
     </div>

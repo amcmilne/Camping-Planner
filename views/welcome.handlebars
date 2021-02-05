@@ -4,6 +4,26 @@ dropdown with list of states
 
 
 --}}
+<!-- HERO -->
+<div class="container container-search"> 
+    <div class="row ">
+    <section class="hero">
+        <div class="hero-body">
+        <p class="title center-item">
+            Welcome to Camping Planner!
+            
+        </p>
+        <p class="subtitle center-item">
+            Select a state to get started...          </p>
+        <div class="dropdown container-content">
+            <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                <span>Select State</span>
+                <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+            </div>
 <ul class="list-group">
   <li class="list-group-item">OH</li>
   <li class="list-group-item">KY</li>
@@ -11,6 +31,42 @@ dropdown with list of states
   <li class="list-group-item">WA</li>
   <li class="list-group-item">VA</li>
 </ul>
+
+            {{!-- <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+            <div class="dropdown-content">
+                <a href="#" class="dropdown-item">
+                Overview
+                </a>
+                <a href="#" class="dropdown-item">
+                Modifiers
+                </a>
+                <a href="#" class="dropdown-item">
+                Grid
+                </a>
+                <a href="#" class="dropdown-item">
+                Form
+                </a>
+                <a href="#" class="dropdown-item">
+                Elements
+                </a>
+                <a href="#" class="dropdown-item">
+                Components
+                </a>
+                <a href="#" class="dropdown-item">
+                Layout
+                </a>
+                <hr class="dropdown-divider">
+                <a href="#" class="dropdown-item">
+                More
+                </a>
+            </div>
+            </div> --}}
+        </div>
+        </div>
+        </section>
+    </div>
+    </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   console.log(window.location.pathname)

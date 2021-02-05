@@ -35,7 +35,18 @@ module.exports = function(app) {
   app.get("/locations/:stateId/:parkId", isAuthenticated, (req, res) => {
     let parkId = req.params.parkId;
     let stateId = req.params.stateId;
-    res.render("location", { parkId: parkId, stateID: stateId });
+    let data = {
+      id: 1,
+      parkName: "Hopewell Culture National Historical Park",
+      address: "National park in Ross County,",
+      state: "OH",
+      url: "somewhere.com",
+      parkDescription:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      weatherDescription:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    };
+    res.render("location", data);
   });
   app.get("/favorite-parks", isAuthenticated, (req, res) => {
     res.render("favorite-parks");

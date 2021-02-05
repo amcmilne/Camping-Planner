@@ -4,7 +4,10 @@ const { fileURLToPath } = require("url");
 let rawdata = fs.readFileSync("everypark.json");
 let parks = JSON.parse(rawdata);
 
-let csvString = "";
+let csvString = "url,parkname,address,description,weather_description,state\n";
+/* ,createdAt,updatedAt,UserId\n"; */
+
+console.log(Date.UTC());
 
 parks.data.forEach((park) => {
   let url = park.url;
@@ -19,7 +22,17 @@ parks.data.forEach((park) => {
   }
   let coords = [park.latitude, park.longitude];
   let state = park.states;
-  let weather = park.weather;
+
+  let description = park.description;
+  description = description.replace(/"/g, "'");
+
+  let weather;
+  if (park.weatherInfo) {
+    weather = park.weatherInfo;    
+  } else {
+    weather = "No weather info provided";
+  }
+
   csvString +=
     url +
     "," +
@@ -27,13 +40,27 @@ parks.data.forEach((park) => {
     "," +
     address +
     "," +
-    coords[0] +
+/*     coords[0] +
     "," +
     coords[1] +
+    "," + */
+    '"' +
+    description +
+    '"' +
+    "," +
+    '"' +
+    weather +
+    '"' +
     "," +
     '"' +
     state +
     '"' +
+/*     "," +
+    Date.UTC() +
+    "," +
+    Date.UTC() +
+    "," +
+    "null" + */
     "\n";
   //csv file   // url,name,address,lat,lng,state,weather\nurl,name,
 });

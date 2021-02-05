@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
     },
 
-    latitude: {
+/*     latitude: {
       type: DataTypes.DECIMAL,
       precision: 20,
       scale: 8,
@@ -39,14 +39,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       precision: 20,
       scale: 8,
-    },
+    }, */
 
     description: {
       type: DataTypes.TEXT,
+      length: 'long',
     },
 
     weather_description: {
       type: DataTypes.TEXT,
+      length: 'long',
     },
 
     state: {

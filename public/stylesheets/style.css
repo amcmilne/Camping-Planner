@@ -74,8 +74,22 @@ label,
 
 p,
 h3,
+.jumbotron,h1 {
+  background-color: #DBB99C;
+  font-family: 'Yusei Magic', sans-serif;
+  font-size: 80px;
+  color:#734338;
+  text-align: center;
+  }
+
+h3,strong {
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 30px;
+}
 h2 {
-  color: black;
+  text-align: center;
+  color: #BC674D;
 }
 
 html,
@@ -87,7 +101,9 @@ body {
   background-image: url(http://best-hd-wallpapers.com/images/national-park-wallpaper-collection-hd-7420.jpeg);
   width: 100%;
   height: 100%;
-  font-family: Arial, Helvetica;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
   letter-spacing: 0.02em;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -98,3 +114,6 @@ body {
   background: rgb(255, 255, 255, 0.9);
   border-radius: 6%;
 }
+
+
+

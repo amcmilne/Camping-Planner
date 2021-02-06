@@ -1,0 +1,179 @@
+[
+    {
+      "Category": "Kitchen",
+      "ItemName": "Stove And Fuel"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Matches/Light/Firestarter"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Cook Pots"
+    },
+    {
+     "Category": "Kitchen",
+      "ItemName": "Frying Pan"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Eating Utensils"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Cooking Utensils"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Bottle Opener/Can Opener"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Sharp Knife"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Plates/Bowls"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Mugs/Cups"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Cutting Board"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Cooler"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Water Bottles"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Camp Sink"
+    },
+    {
+      "Category": "Kitchen",
+      "ItemName": "Soap"
+    },
+    {
+      "Category": "Tools",
+      "ItemName": "Multi-Tool"
+    },
+    {
+      "Category": "Tools",
+      "ItemName": "Duct Tape"
+    },
+    {
+      "Category": "Tools",
+      "ItemName": "Extra Cord"
+    },
+    {
+      "Category": "Tools",
+      "ItemName": "Mallet/Hammer"
+    },
+    {
+      "Category": "Tools",
+      "ItemName": "Saw/Axe"
+    },
+    {
+      "Category": "Clothing",
+      "ItemName": "Moisture Wicking Shirts/Pants/Undergarments"
+    },
+    {
+      "Category": "Clothing",
+      "ItemName": "Long Sleeves"
+    },
+    {
+      "Category": "Clothing",
+      "ItemName": "Jacket"
+    },
+    {
+      "Category": "Clothing",
+      "ItemName": "Boots/Shoes"
+    },
+    {
+      "Category": "Clothing",
+      "ItemName": "Socks"
+    },
+    {
+      "Category": "Clothing",
+      "ItemName": "Sleepwear"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Toilet Paper"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Hand Sanitizer"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Toothbrush/Toothpaste"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Towels"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "First Aid Kit/Supplies"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Sunscreen"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Bug Spray"
+    },
+    {
+      "Category": "Hygiene",
+      "ItemName": "Lip Balm"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Firewood"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Cots"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Grill"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Portable Coffee/Tea Maker"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Solar/Portable Power"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Binoculars"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Rain Gear"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Snow Gear"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Gloves/Mittens"
+    },
+    {
+      "Category": "Optional",
+      "ItemName": "Warm Hat"
+    }
+  ]
+  

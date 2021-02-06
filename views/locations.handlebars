@@ -11,6 +11,8 @@
         margin: 10px;
         text-align: center;
         color: white;
+        font-family: 'Yusei Magic', sans-serif;
+
     }
 
     h1 {
@@ -30,10 +32,45 @@
         background: rgb(255, 255, 255, 0.3);
         color: white;
     }
+    
+    /*navbar style*/
+.navbar{
+  background-color: #bc674d;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+.navbar-item{
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+/* Buttons */
+.button {
+  background-color: #734338;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+#btn-blu,
+.btn-blu {
+  background-color: #a3cfd9;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+  align;
+}
+
+.center{
+    width: 350px;
+    height: 300px;
+}
+
 </style>
-<div class="overflow-auto">
+
+
+<div class="container background ">
+<div class="row" "overflow-auto">
     <h2>Chose a National Park!</h2>
-    <ul class="list-group">
+    <ul class="list-group overflow-scroll center">
         <li class="list-group-item ">1 National Park</li>
         <li class="list-group-item">2 National Park</li>
         <li class="list-group-item">3 National Park</li>
@@ -41,6 +78,8 @@
         <li class="list-group-item">5 National Park</li>
     </ul>
 </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $("li").click((e) => {

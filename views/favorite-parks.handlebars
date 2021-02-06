@@ -28,17 +28,53 @@
         background: rgb(255, 255, 255, 0.3);
         color: white;
     }
+    /* Navbar */
+.navbar{
+  background-color: #bc674d;
+}
+
+.navbar-item{
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+/* Buttons */
+.button {
+  background-color: #734338;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+.btn-blu {
+  background-color: #a3cfd9;
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+}
+.list-group{
+      font-family: 'Yusei Magic', sans-serif;
+
+}
+.center{
+    width: 350px;
+    height: 300px;
+}
+
 </style>
-<div class="overflow-auto">
-    <ul class="list-group">
-        <h2>Choose your favorite Park</h2>
+<div class="container background">
+<div class="row" "overflow-auto">
+    <h2>Choose your favorite Park</h2>
+    <ul class="list-group center">
+        
         <li class="list-group-item" state="OH" parkId="438">1 Favorite Park</li>
         <li class="list-group-item">2 Favorite Park</li>
         <li class="list-group-item">3 Favorite Park</li>
         <li class="list-group-item">4 Favorite Park</li>
         <li class="list-group-item">5 Favorite Park</li>
     </ul>
+
 </div>
+</div>
+
 <script>
     $(".list-group-item").click((e) => {
         stateId = "NJ"

@@ -67,20 +67,21 @@ info such as: description-address-website and the weather(based on ZipCode
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 class="card-header">{{parkName}}<i class="heart fa fa-heart-o" title="Email Myself"></i>
+                <h1 class="card-header">{{this.parkname}}<i class="heart fa fa-heart-o" status="false"
+                        title="Email Myself"></i>
                     <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
                 <div class="card-body">
                     <h2>State: {{state}}</h2>
                     <h2>Address: {{address}}</h2>
-                    <h2>Website: {{url}}</h2>
+                    <h2>Website: <a href={{url}} target="_blank">{{url}}</a></h2>
                     <br>
                     <h2>Park Description</h2>
-                    <p>{{parkDescription}}</p>
+                    <p>{{description}}</p>
                     <br>
                     <h2>Weather Description</h2>
-                    <p>{{weatherDescription}}</p>
+                    <p>{{weather_description}}</p>
 
                 </div>
 
@@ -105,7 +106,7 @@ info such as: description-address-website and the weather(based on ZipCode
                 <div class="card-body">
                     <div class="row">
                         <div>
-                            <ul id="list-group" class="list-group mb-0">                                
+                            <ul id="list-group" class="list-group mb-0">
                             </ul>
                         </div>
 
@@ -132,7 +133,14 @@ info such as: description-address-website and the weather(based on ZipCode
             window.location.replace(url);
         });
         $(".heart.fa").click(function () {
-            $(this).toggleClass("fa-heart fa-heart-o");
+            //$(this).toggleClass("fa-heart fa-heart-o");
+            if ($(this).attr("status") == "true") {
+                $(this).attr("class", "heart fa fa-heart")
+                $(this).attr("status", "false")
+            } else {
+                $(this).attr("class", "heart fa fa-heart-o")
+                $(this).attr("status", "true")
+            }
         });
         $("#own-status").click(function () {
             //change own status in database
@@ -150,7 +158,7 @@ info such as: description-address-website and the weather(based on ZipCode
 
     <script type="text/javascript">
         var equipmentList =
-            [  
+            [
                 {
                     "Category": "Kitchen",
                     "ItemName": "Stove And Fuel"
@@ -331,7 +339,7 @@ info such as: description-address-website and the weather(based on ZipCode
 
         var equipmentHtmlContainer = "";
 
-        equipmentList.forEach(item => {            
+        equipmentList.forEach(item => {
             equipmentHtmlContainer += `<li class="list-group-item" data-item=${item.ItemName}>${item.ItemName}<i class="fa fa-trash"></i>
                                             <span id="own-status" status="true">OWN</span>
                                         </li>`

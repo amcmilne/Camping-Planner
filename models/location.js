@@ -56,19 +56,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    parkCode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
   });
 
   Location.associate = (models) => {
-    /*     Location.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      },
-    }); */
-
-    Location.hasMany(models.Equipment, {
-      onDelete: "cascade",
-    });
-
     Location.belongsToMany(models.User, { through: "User_Locations" });
   };
 

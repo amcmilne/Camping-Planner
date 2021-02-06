@@ -110,8 +110,8 @@ module.exports = function(app) {
   app.post("/api/equipment/add_one", (req, res) => {
     db.Equipment.create({
       itemName: req.body.itemName,
-      UserId: req.body.user,
-      LocationId: req.body.location
+      UserId: req.body.user_id,
+      LocationId: req.body.location_id
     }).then(dbEquipment => res.json(dbEquipment));
   });
 
@@ -130,12 +130,23 @@ module.exports = function(app) {
       res.render("equipment-list", data);
     }); */
   });
+
+  // GET route for retrieving needed equipment
   app.get("/api/park_equipment/retrieve_needed_equipment", (req, res) => {
-    let parkId = req.body.location_id;
+    db.Equipment.findAll({
+      where: {
+        need: true,
+        UserId: req.body.user_id,
+        LocationId: req.body.location_id
+      },
+      include: [db.User, db.Location]
+    }).then(equipment_list => res.json(equipment_list));
+
+/*     let parkId = req.body.location_id;
     db.Equipment_Location.getAll(req.user.email, parkId, (data) => {
       //should return a list of equipment with Need status true and Own status true or false
       res.render("equipment-list", data);
-    });
+    }); */
   });
 
   // PUT route for updating owned status of an item

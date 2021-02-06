@@ -2,3 +2,5 @@
 DROP DATABASE IF EXISTS campaignPlanner_DB;
 -- Creates the "passport_demo" database --
 CREATE DATABASE campaignPlanner_DB;
+use campaignPlanner_DB;
+

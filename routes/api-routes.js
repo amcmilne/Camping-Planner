@@ -137,11 +137,19 @@ module.exports = function(app) {
       res.render("equipment-list", data);
     });
   });
+
+  // PUT route for updating owned status of an item
   app.put("/api/park_equipment/update_own_status", (req, res) => {
-    db.Equipment_Location.updateOne(req.user.email, locationId, (data) => {
+    db.Equipment.update(ownedStatus, {
+      where: {
+        id: req.body.itemId
+      }
+    }).then(ownedUpdate => res.json(ownedUpdate));
+    
+/*     db.Equipment_Location.updateOne(req.user.email, locationId, (data) => {
       // should update Own status to true in the Equipment_Location model
       // and it should return the object back with updated info
       res.render("equipment-list", data);
-    });
+    }); */
   });
 };

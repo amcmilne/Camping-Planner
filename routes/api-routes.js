@@ -105,13 +105,18 @@ module.exports = function(app) {
       });
     }
   );
+
+  // POST route for adding new equipment to the database
   app.post("/api/equipment/add_one", (req, res) => {
-    db.Parks_Equipment.addOne(equipment_name, (data) => {
-      // accepts as parameter a new equipment
-      // check if there are any equipment with such name in database,
-      // if there exist then set the Need status to true, if not it should add a new equipment with Need status true
-    });
+    db.Equipment.create({
+      itemName: req.body.itemName,
+      itemDescription: req.body.itemDescription,
+      UserId: req.body.user,
+      LocationId: req.body.location
+    }).then(dbEquipment => res.json(dbEquipment));
   });
+
+
   app.put("/api/equipment/update_need_status", (req, res) => {
     db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
       // this function will be called when we delete the item from the list

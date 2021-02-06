@@ -109,7 +109,7 @@ module.exports = function(app) {
   // POST route for adding new equipment to the database
   app.post("/api/equipment/add_one", (req, res) => {
     db.Equipment.create({
-      itemName: req.body.itemName,
+      itemName: req.body.item_name,
       UserId: req.body.user_id,
       LocationId: req.body.location_id
     }).then(dbEquipment => res.json(dbEquipment));

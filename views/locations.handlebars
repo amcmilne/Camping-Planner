@@ -70,12 +70,11 @@
 <div class="container background ">
 <div class="row" "overflow-auto">
     <h2>Chose a National Park!</h2>
-    <ul class="list-group overflow-scroll center">
-        <li class="list-group-item ">1 National Park</li>
-        <li class="list-group-item">2 National Park</li>
-        <li class="list-group-item">3 National Park</li>
-        <li class="list-group-item">4 National Park</li>
-        <li class="list-group-item">5 National Park</li>
+    <ul class="list-group">
+        {{#each parks}}
+        <li class="list-group-item" value={{id}}>{{parkname}}</li>
+        {{/each}}
+
     </ul>
 </div>
 </div>
@@ -83,7 +82,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $("li").click((e) => {
-        parkId = 434
+        let parkId = e.currentTarget.attributes[1].value
         let url = window.location.pathname + "/" + parkId;
         window.location.replace(url);
     });

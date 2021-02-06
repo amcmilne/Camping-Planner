@@ -39,3 +39,5 @@ db.sequelize.sync({ force: true }).then(() => {
     );
   });
 });
+
+const test = require("./public/data/equipment.json");

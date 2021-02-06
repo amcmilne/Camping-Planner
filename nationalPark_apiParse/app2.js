@@ -8,7 +8,8 @@ const moment = require("moment");
 let rawdata = fs.readFileSync("everypark.json");
 let parks = JSON.parse(rawdata);
 
-let csvString = "url,parkname,address,description,weather_description,state,createdAt,updatedAt\n";
+let csvString =
+  "url,parkname,address,description,weather_description,state,createdAt,updatedAt\n";
 
 parks.data.forEach((park) => {
   let url = park.url;
@@ -38,7 +39,9 @@ parks.data.forEach((park) => {
     weather = "No weather info provided";
   }
 
-  var date1 = new Date().toISOString().slice(0,-1);
+  let parkId = park.parkCode;
+
+  var date1 = new Date().toISOString().slice(0, -1);
 
   csvString +=
     url +
@@ -51,7 +54,7 @@ parks.data.forEach((park) => {
     address +
     '"' +
     "," +
-/*     coords[0] +
+    /*     coords[0] +
     "," +
     coords[1] +
     "," + */
@@ -65,6 +68,10 @@ parks.data.forEach((park) => {
     "," +
     '"' +
     state +
+    '"' +
+    "," +
+    '"' +
+    parkId +
     '"' +
     "," +
     date1 +

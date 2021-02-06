@@ -1,24 +1,28 @@
 const fs = require("fs");
 const { fileURLToPath } = require("url");
 const sequelize = require("sequelize");
+const moment = require("moment");
+
+/* var time = moment().format() */
 
 let rawdata = fs.readFileSync("everypark.json");
 let parks = JSON.parse(rawdata);
 
-let csvString = "url,parkname,address,description,weather_description,state,createdAt,updatedAt,UserId\n";
-
-console.log(Date.UTC());
+let csvString = "url,parkname,address,description,weather_description,state,createdAt,updatedAt\n";
 
 parks.data.forEach((park) => {
   let url = park.url;
   let name = park.fullName;
+  let address;
   if (park.addresses[0]) {
-    var address =
+    address =
       park.addresses[0].line1 +
       " " +
       park.addresses[0].city +
       " " +
       park.addresses[0].postalCode;
+  } else {
+    address = "No address available";
   }
   let coords = [park.latitude, park.longitude];
   let state = park.states;
@@ -34,12 +38,18 @@ parks.data.forEach((park) => {
     weather = "No weather info provided";
   }
 
+  var date1 = new Date().toISOString().slice(0,-1);
+
   csvString +=
     url +
     "," +
+    '"' +
     name +
+    '"' +
     "," +
+    '"' +
     address +
+    '"' +
     "," +
 /*     coords[0] +
     "," +
@@ -57,11 +67,9 @@ parks.data.forEach((park) => {
     state +
     '"' +
     "," +
-    Date() +
+    date1 +
     "," +
-    Date() +
-    "," +
-    "null" +
+    date1 +
     "\n";
   //csv file   // url,name,address,lat,lng,state,weather\nurl,name,
 });

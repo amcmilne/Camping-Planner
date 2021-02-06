@@ -30,6 +30,13 @@ module.exports = function(app) {
   });
   app.get("/locations/:stateId", isAuthenticated, (req, res) => {
     let stateId = req.params.stateId;
+    
+    /* SEQUEL EQUIVALENT
+    SELECT *
+    FROM locations
+    WHERE state
+    LIKE `%${stateId}%` */
+
     res.render("locations", { stateID: stateId });
   });
   app.get("/locations/:stateId/:parkId", isAuthenticated, (req, res) => {

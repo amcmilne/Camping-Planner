@@ -105,33 +105,62 @@ module.exports = function(app) {
       });
     }
   );
+
+  // POST route for adding new equipment to the database
   app.post("/api/equipment/add_one", (req, res) => {
-    db.Parks_Equipment.addOne(equipment_name, (data) => {
-      // accepts as parameter a new equipment
-      // check if there are any equipment with such name in database,
-      // if there exist then set the Need status to true, if not it should add a new equipment with Need status true
-    });
+    db.Equipment.create({
+      itemName: req.body.item_name,
+      UserId: req.body.user_id,
+      LocationId: req.body.location_id
+    }).then(dbEquipment => res.json(dbEquipment));
   });
+
+  // PUT route for updating need status of an item
   app.put("/api/equipment/update_need_status", (req, res) => {
-    db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
+    db.Equipment.update(needStatus, {
+      where: {
+        id: req.body.itemId
+      }
+    }).then(needUpdate => res.json(needUpdate));
+
+/*     db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
       // this function will be called when we delete the item from the list
       // should set Need status to false in the Park_Equipment model
       // and then I will call db.Equipment_Location.getAll to get refreshed data
       res.render("equipment-list", data);
-    });
+    }); */
   });
+
+  // GET route for retrieving needed equipment
   app.get("/api/park_equipment/retrieve_needed_equipment", (req, res) => {
-    let parkId = req.body.location_id;
+    db.Equipment.findAll({
+      where: {
+        need: true,
+        UserId: req.body.user_id,
+        LocationId: req.body.location_id
+      },
+      include: [db.User, db.Location]
+    }).then(equipment_list => res.json(equipment_list));
+
+/*     let parkId = req.body.location_id;
     db.Equipment_Location.getAll(req.user.email, parkId, (data) => {
       //should return a list of equipment with Need status true and Own status true or false
       res.render("equipment-list", data);
-    });
+    }); */
   });
+
+  // PUT route for updating owned status of an item
   app.put("/api/park_equipment/update_own_status", (req, res) => {
-    db.Equipment_Location.updateOne(req.user.email, locationId, (data) => {
+    db.Equipment.update(ownedStatus, {
+      where: {
+        id: req.body.itemId
+      }
+    }).then(ownedUpdate => res.json(ownedUpdate));
+    
+/*     db.Equipment_Location.updateOne(req.user.email, locationId, (data) => {
       // should update Own status to true in the Equipment_Location model
       // and it should return the object back with updated info
       res.render("equipment-list", data);
-    });
+    }); */
   });
 };

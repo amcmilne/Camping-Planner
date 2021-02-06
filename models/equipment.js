@@ -14,11 +14,11 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
     },
 
-    itemDescription: {
+/*     itemDescription: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
+    }, */
 
     owned: {
       type: DataTypes.BOOLEAN,

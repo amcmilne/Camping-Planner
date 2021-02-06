@@ -110,20 +110,25 @@ module.exports = function(app) {
   app.post("/api/equipment/add_one", (req, res) => {
     db.Equipment.create({
       itemName: req.body.itemName,
-      itemDescription: req.body.itemDescription,
       UserId: req.body.user,
       LocationId: req.body.location
     }).then(dbEquipment => res.json(dbEquipment));
   });
 
-
+  // PUT route for updating need status of an item
   app.put("/api/equipment/update_need_status", (req, res) => {
-    db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
+    db.Equipment.update(needStatus, {
+      where: {
+        id: req.body.itemId
+      }
+    }).then(needUpdate => res.json(needUpdate));
+
+/*     db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
       // this function will be called when we delete the item from the list
       // should set Need status to false in the Park_Equipment model
       // and then I will call db.Equipment_Location.getAll to get refreshed data
       res.render("equipment-list", data);
-    });
+    }); */
   });
   app.get("/api/park_equipment/retrieve_needed_equipment", (req, res) => {
     let parkId = req.body.location_id;

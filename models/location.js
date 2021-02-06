@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
 
-/*     latitude: {
+    latitude: {
       type: DataTypes.DECIMAL,
       precision: 20,
       scale: 8,
@@ -40,38 +40,36 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       precision: 20,
       scale: 8,
-    }, */
+    },
 
     description: {
       type: DataTypes.TEXT,
-      length: 'long',
+      length: "long",
     },
 
     weather_description: {
       type: DataTypes.TEXT,
-      length: 'long',
+      length: "long",
     },
 
     state: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
   });
 
   Location.associate = (models) => {
-/*     Location.belongsTo(models.User, {
+    /*     Location.belongsTo(models.User, {
       foreignKey: {
         allowNull: false,
       },
     }); */
 
     Location.hasMany(models.Equipment, {
-      onDelete: 'cascade',
+      onDelete: "cascade",
     });
 
-    Location.belongsToMany(models.User, { through: 'User_Locations' });
-
+    Location.belongsToMany(models.User, { through: "User_Locations" });
   };
 
   return Location;

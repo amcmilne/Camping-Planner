@@ -1,24 +1,7 @@
 {
   "development": {
-<<<<<<< HEAD
     "username": "root",
     "password": "root",
-=======
-
-    "username": "root",
-
-    "password": "root",
-=======
-    "password": "Z9PpV$u!Rc3G",
-=======
-    "username": "",
-    "password": "",
-
-=======
-    "username": "",
-    "password": "",
-
->>>>>>> upstream/main
     "database": "campaignPlanner_DB",
     "host": "localhost",
     "dialect": "mysql"

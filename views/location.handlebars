@@ -67,7 +67,7 @@ info such as: description-address-website and the weather(based on ZipCode
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 class="card-header">{{this.parkname}}<i class="heart fa fa-heart-o" status="false"
+                <h1 class="card-header">{{this.parkname}}<i class="heart fa fa-heart-o" data-id={{id}} status="false"
                         title="Email Myself"></i>
                     <div class="container col-md-2 clearfix">
                     </div>
@@ -133,16 +133,28 @@ info such as: description-address-website and the weather(based on ZipCode
             window.location.replace(url);
         });
         $(".heart.fa").click(function () {
-            //$(this).toggleClass("fa-heart fa-heart-o");
             if ($(this).attr("status") == "true") {
-                $(this).attr("class", "heart fa fa-heart")
-                $(this).attr("status", "false")
+                $.ajax({
+                    url: "/api/user_profiles/favorites",
+                    method: "POST",
+                    data: { location_id: $(this).attr("data-id") }
+                }).then(function (data) {
+                    $(this).attr("class", "heart fa fa-heart")
+                    $(this).attr("status", "false")
+                })
+
             } else {
-                $(this).attr("class", "heart fa fa-heart-o")
-                $(this).attr("status", "true")
-            }
+                $.ajax({
+                    url: "/api/user_profiles/favorites",
+                    method: "DELETE",
+                    data: { location_id: $(this).attr("data-id") }
+                }).then(function (data) {
+                    $(this).attr("class", "heart fa fa-heart-o")
+                    $(this).attr("status", "true")
+                })
+            };
         });
-        $("#own-status").click(function () {
+        $("#own-status").click(function (data) {
             //change own status in database
             if ($(this).attr("status") == "true") {
                 $(this).css("color", "green")

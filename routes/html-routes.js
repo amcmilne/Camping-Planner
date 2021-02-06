@@ -46,6 +46,7 @@ module.exports = function(app) {
       raw: true,
       where: { id: parkId },
     }).then((data) => {
+      res.json(data);
       res.render("location", data);
     });
   });

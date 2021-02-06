@@ -1,8 +1,8 @@
 {
   "development": {
-
     "username": "",
     "password": "",
+
     "database": "campaignPlanner_DB",
     "host": "localhost",
     "dialect": "mysql"

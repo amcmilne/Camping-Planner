@@ -1,12 +1,46 @@
 {{!-- Choose from list of state parks --}}
 {{!-- Get the list of parks and ids, and set value attribute in html with id from the object --}}
-<ul class="list-group">
-    <li class="list-group-item disabled">1 National Park</li>
-    <li class="list-group-item">2 National Park</li>
-    <li class="list-group-item">3 National Park</li>
-    <li class="list-group-item">4 National Park</li>
-    <li class="list-group-item">5 National Park</li>
-</ul>
+<style>
+    .overflow-auto {
+        width: 400px;
+        height: 200px;
+    }
+
+    h2,
+    h1 {
+        margin: 10px;
+        text-align: center;
+        color: white;
+    }
+
+    h1 {
+        margin-top: 100px;
+        font-size: 30px;
+    }
+
+    .overflow-auto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .list-group-item {
+        background: rgb(255, 255, 255, 0.3);
+        color: white;
+    }
+</style>
+<div class="overflow-auto">
+    <h2>Chose a National Park!</h2>
+    <ul class="list-group">
+        <li class="list-group-item ">1 National Park</li>
+        <li class="list-group-item">2 National Park</li>
+        <li class="list-group-item">3 National Park</li>
+        <li class="list-group-item">4 National Park</li>
+        <li class="list-group-item">5 National Park</li>
+    </ul>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $("li").click((e) => {

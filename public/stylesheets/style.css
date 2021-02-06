@@ -3,6 +3,7 @@ form.login {
   margin-top: 80px;
 }
 
+
 /* Document Body */
 /* body {
   background-color: #84815d;
@@ -68,4 +69,32 @@ form.login {
 
 .nav-link{
   color: white;
+}
+label,
+
+p,
+h3,
+h2 {
+  color: black;
+}
+
+html,
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  background-image: url(http://best-hd-wallpapers.com/images/national-park-wallpaper-collection-hd-7420.jpeg);
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.col-md-4,
+.col-md-6 {
+  margin-top: 50px;
+  background: rgb(255, 255, 255, 0.9);
+  border-radius: 6%;
 }

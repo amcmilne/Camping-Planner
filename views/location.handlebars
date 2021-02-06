@@ -8,7 +8,54 @@ info such as: description-address-website and the weather(based on ZipCode
 -Weather
 -description from database
 --}}
+<style>
+    .col-md-8 {
+        margin-top: 15px;
+    }
 
+    .card-header {
+        display: block;
+    }
+
+    #own-status {
+        float: right;
+        color: green;
+        font-weight: bolder;
+        margin-right: 10px;
+    }
+
+    #own-status:hover {
+        font-size: 1.1em;
+        transition: 0.05s ease-out;
+    }
+
+    .fa-paper-plane:hover {
+        font-size: 1.1em;
+        transition: 0.05s ease-out;
+    }
+
+    .fa-paper-plane {
+        float: right;
+        color: violet;
+        margin-right: 10px;
+    }
+
+    .heart {
+        float: right;
+        font-size: 25px;
+        color: red;
+    }
+
+    .fa-trash {
+        color: red;
+        float: right;
+    }
+
+    .fa-trash:hover {
+        font-size: 1.1em;
+        transition: 0.05s ease-out;
+    }
+</style>
 
 <!-- Page Content -->
 <br>
@@ -20,17 +67,28 @@ info such as: description-address-website and the weather(based on ZipCode
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <p class="title">Park Name </p>
-
             <!-- Blog Post -->
             <div class="card mb-4">
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                <h1 class="card-header">{{parkName}}<i class="heart fa fa-heart-o" title="Email Myself"></i>
+                    <div class="container col-md-2 clearfix">
+                    </div>
+                </h1>
                 <div class="card-body">
                     <h2 class="card-title">Post Title</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid
                         atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
                         voluptate voluptatibus possimus, veniam magni quis!</p>
                     <a href="#" class="btn btn-blu">Read More &rarr;</a>
+                    <h2>State: {{state}}</h2>
+                    <h2>Address: {{address}}</h2>
+                    <h2>Website: {{url}}</h2>
+                    <br>
+                    <h2>Park Description</h2>
+                    <p>{{parkDescription}}</p>
+                    <br>
+                    <h2>Weather Description</h2>
+                    <p>{{weatherDescription}}</p>
+
                 </div>
 
             </div>
@@ -57,25 +115,18 @@ info such as: description-address-website and the weather(based on ZipCode
             </div>
 
 
-            <div class="card my-4" id="card">
-                <h5 class="card-header">Equipment List</h5>
+            <div class="card my-4">
+                <h5 class="card-header">Equipment List <i class="fa fa-paper-plane"></i></h5>
                 <div class="card-body">
                     <div class="row">
-                      <div class="col-lg-6">
-                        <ul class="list-group mb-0">
-                            {{> equipment-list}}
-                        </ul>
-                    </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-
+                        <div>
+                            <ul class="list-group mb-0">
+                                <li class="list-group-item"> hammer<i class="fa fa-trash"></i>
+                                    <span id="own-status" status="true">OWN</span>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
 
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -84,12 +135,34 @@ info such as: description-address-website and the weather(based on ZipCode
             <div class="card my-4" id="card">
                 <h5 class="card-header">Checklist</h5>
                 <div class="card-body">
-                    Not sure what equipment you need, then press <span><a href="/checklist">here</a><span> to select
-                            equipment from our checklist
+                    If you are not sure what equipment you need; then, press <a id="checklist" href="#">here</a> to
+                    select equipment from our checklist
                 </div>
             </div>
 
         </div>
 
     </div>
-    </div>
+</div>
+
+    <script>
+        $("#checklist").click((e) => {
+            let url = window.location.pathname + "/" + "checklist";
+            window.location.replace(url);
+        });
+        $(".heart.fa").click(function () {
+            $(this).toggleClass("fa-heart fa-heart-o");
+        });
+        $("#own-status").click(function () {
+            //change own status in database
+            if ($(this).attr("status") == "true") {
+                $(this).css("color", "green")
+                $(this).attr("status", "false")
+            } else {
+                $(this).css("color", "red")
+                $(this).attr("status", "true")
+            }
+
+        })
+
+    </script>

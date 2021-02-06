@@ -1,4 +1,5 @@
-// Creating our Location model
+// Creating our Equipment model
+
 module.exports = function(sequelize, DataTypes) {
   const Equipment = sequelize.define("Equipment", {
     id: {
@@ -23,6 +24,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       default: false,
     },
+
+    need: {
+      type: DataTypes.BOOLEAN,
+      default: false,
+    },
+
   });
   Equipment.associate = (models) => {
     Equipment.belongsTo(models.User, {
@@ -30,6 +37,12 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       },
     });
+    Equipment.belongsTo(models.Location, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
+
   return Equipment;
 };

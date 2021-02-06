@@ -2,7 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-
+const Handlebars = require("handlebars");
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -38,7 +38,7 @@ module.exports = function(app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
+  app.get("/api/user_data", isAuthenticated, (req, res) => {
     if (!req.user) {
       res.json({});
     } else {
@@ -48,7 +48,7 @@ module.exports = function(app) {
       });
     }
   });
-  app.post("/api/send_email", (req, res) => {
+  app.post("/api/send_email", isAuthenticated, (req, res) => {
     const data = {
       from: process.env.mailgun_from_address,
       to: req.body.to,
@@ -67,10 +67,33 @@ module.exports = function(app) {
       res.json(body);
     });
   });
-  app.get("/api/park_equipment", (req, res) => {
-    db.Parks.getAll(req.user.email, stateId, (data) => {
-      res.render("location", data);
+  app.get("/api/park_equipment", isAuthenticated, (req, res) => {
+    db.Parks.getAll(req.user.email, parkId, (error, data) => {
+      console.log(error);
+      //res.render("location", data);
     });
+    data = [
+      {
+        id: 1,
+        itemName: "chain",
+        owned: true,
+        need: true,
+      },
+      {
+        id: 2,
+        itemName: "lantern",
+        owned: false,
+        need: true,
+      },
+      {
+        id: 3,
+        itemName: "hammer",
+        owned: true,
+        need: false,
+      },
+    ];
+    //Handlebars.registerPartial("equipment-list");
+    res.render("equipment-list", data);
   });
   app.put(
     "/api/park_equipment/update_equipment_need_status",

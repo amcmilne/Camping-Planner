@@ -1,10 +1,13 @@
 const fs = require("fs");
 const { fileURLToPath } = require("url");
+const sequelize = require("sequelize");
 
 let rawdata = fs.readFileSync("everypark.json");
 let parks = JSON.parse(rawdata);
 
-let csvString = "";
+let csvString = "url,parkname,address,description,weather_description,state,createdAt,updatedAt,UserId\n";
+
+console.log(Date.UTC());
 
 parks.data.forEach((park) => {
   let url = park.url;
@@ -19,7 +22,18 @@ parks.data.forEach((park) => {
   }
   let coords = [park.latitude, park.longitude];
   let state = park.states;
-  let weather = park.weather;
+
+  let description = park.description;
+  description = description.replace(/"/g, "'");
+
+  let weather;
+  if (park.weatherInfo) {
+    weather = park.weatherInfo;
+    weather = weather.replace(/"/g, "'");
+  } else {
+    weather = "No weather info provided";
+  }
+
   csvString +=
     url +
     "," +
@@ -27,13 +41,27 @@ parks.data.forEach((park) => {
     "," +
     address +
     "," +
-    coords[0] +
+/*     coords[0] +
     "," +
     coords[1] +
+    "," + */
+    '"' +
+    description +
+    '"' +
+    "," +
+    '"' +
+    weather +
+    '"' +
     "," +
     '"' +
     state +
     '"' +
+    "," +
+    Date() +
+    "," +
+    Date() +
+    "," +
+    "null" +
     "\n";
   //csv file   // url,name,address,lat,lng,state,weather\nurl,name,
 });

@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: 'cascade',
     });
 
-    User.belongsToMany(models.Location, { through: 'User_Profiles' });
+    User.belongsToMany(models.Location, { through: 'User_Locations' });
   };
 
   return User;

@@ -3,3 +3,51 @@
 - Send Email feild
 
 --}}
+<style>
+    #selection {
+        float: right;
+    }
+
+    .row {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .card {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header">Checklist</div>
+                <div class="card body">
+                    <div>
+                        <ul id="list-group" class="list-group list-group-flush">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var itemsSelectedJSON = localStorage.getItem('itemList');
+    itemsSelected = JSON.parse(itemsSelectedJSON);
+    
+    var equipmentHtmlContainer = "";
+
+    itemsSelected.forEach(item => {
+        equipmentHtmlContainer += `<i class="far fa-arrow-alt-circle-right"></i><li data-item=${item.itemname}>${item.itemname}</li>` 
+    });
+
+    document.getElementById("list-group").innerHTML += equipmentHtmlContainer;
+</script>

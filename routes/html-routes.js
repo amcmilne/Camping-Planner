@@ -46,12 +46,8 @@ module.exports = function(app) {
       raw: true,
       where: { id: parkId },
     }).then((data) => {
-      res.json(data);
       res.render("location", data);
     });
-  });
-  app.get("/favorite-parks", isAuthenticated, (req, res) => {
-    res.render("favorite-parks");
   });
   app.get(
     "/locations/:stateId/:parkId/checklist",

@@ -1,13 +1,3 @@
-{{!-- This page will hold the premade equiptment list (based on state/park),
-info such as: description-address-website and the weather(based on ZipCode
--Equiptment list:
--if checked yes ex.green
--if checked no ex.red and show link
--submit button creates checklist on checklist.handlebars page
-- Should let users add new items to their checklist
--Weather
--description from database
---}}
 <style>
     .col-md-8 {
         margin-top: 15px;
@@ -55,6 +45,10 @@ info such as: description-address-website and the weather(based on ZipCode
         font-size: 1.1em;
         transition: 0.05s ease-out;
     }
+
+    .overflow-auto {
+        height: 300px;
+    }
 </style>
 
 <!-- Page Content -->
@@ -67,8 +61,8 @@ info such as: description-address-website and the weather(based on ZipCode
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 class="card-header">{{this.parkname}}<i class="heart fa fa-heart-o" data-id={{id}} status="false"
-                        title="Email Myself"></i>
+                <h1 id="park-name" class="card-header">{{parkname}}<i id="heart-icon" class="heart fa fa-heart-o"
+                        favorite="null" park-id={{id}}></i>
                     <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
@@ -105,7 +99,7 @@ info such as: description-address-website and the weather(based on ZipCode
                 <h5 class="card-header">Equipment List</h5>
                 <div class="card-body">
                     <div class="row">
-                        <div>
+                        <div class="overflow-auto">
                             <ul id="list-group" class="list-group mb-0">
                             </ul>
                         </div>
@@ -132,27 +126,52 @@ info such as: description-address-website and the weather(based on ZipCode
             let url = window.location.pathname + "/" + "checklist";
             window.location.replace(url);
         });
+        const parkId = $("#heart-icon").attr("park-id");
+        $.post({
+            url: "/api/user_profiles/favorites/status",
+            method: "POST",
+            data: { locationId: parkId }
+        }).then(function (data) {
+            console.log(data.favorite)
+            $("#heart-icon").attr("favorite", data.favorite)
+            if ($("#heart-icon").attr("favorite") == null) {
+                $("#heart-icon").attr("class", "heart fa fa-heart-o");
+            } else {
+                $("#heart-icon").attr("class", "heart fa fa-heart");
+            }
+        })
+
+
         $(".heart.fa").click(function () {
-            if ($(this).attr("status") == "true") {
+            console.log($(this).attr("location-id"))
+
+            if ($(this).attr("favorite") == "null") {
+                $(this).attr("favorite", "true")
+                $(this).attr("class", "heart fa fa-heart");
                 $.ajax({
                     url: "/api/user_profiles/favorites",
                     method: "POST",
-                    data: { location_id: $(this).attr("data-id") }
-                }).then(function (data) {
-                    $(this).attr("class", "heart fa fa-heart")
-                    $(this).attr("status", "false")
+                    data: {
+                        locationId: $(this).attr("park-id"),
+                        locationName: $("#park-name").text().trim()
+                    }
+                }).then((err, data) => {
+                    if (err) throw error;
                 })
-
             } else {
+                $(this).attr("favorite", "null")
+                $(this).attr("class", "heart fa fa-heart-o");
                 $.ajax({
                     url: "/api/user_profiles/favorites",
                     method: "DELETE",
-                    data: { location_id: $(this).attr("data-id") }
-                }).then(function (data) {
-                    $(this).attr("class", "heart fa fa-heart-o")
-                    $(this).attr("status", "true")
+                    data: {
+                        locationId: $(this).attr("park-id"),
+                    }
+                }).then((err, data) => {
+                    if (err) throw error;
                 })
-            };
+
+            }
         });
         $("#own-status").click(function (data) {
             //change own status in database

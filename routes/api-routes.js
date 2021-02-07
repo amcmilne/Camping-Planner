@@ -30,6 +30,21 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+  app.get("/favorite-parks", (req, res) => {
+    db.User_Profiles.findAll({
+      raw: true,
+      where: {
+        UserId: req.user.id,
+      },
+      attributes: ["LocationId", "locationName"],
+    }).then((data) => {
+      console.log(data);
+      let handlebarsObj = {
+        favoriteParks: data,
+      };
+      res.render("favorite-parks", handlebarsObj);
+    });
+  });
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
@@ -111,19 +126,19 @@ module.exports = function(app) {
     db.Equipment.create({
       itemName: req.body.item_name,
       UserId: req.body.user_id,
-      LocationId: req.body.location_id
-    }).then(dbEquipment => res.json(dbEquipment));
+      LocationId: req.body.location_id,
+    }).then((dbEquipment) => res.json(dbEquipment));
   });
 
   // PUT route for updating need status of an item
   app.put("/api/equipment/update_need_status", (req, res) => {
     db.Equipment.update(needStatus, {
       where: {
-        id: req.body.itemId
-      }
-    }).then(needUpdate => res.json(needUpdate));
+        id: req.body.itemId,
+      },
+    }).then((needUpdate) => res.json(needUpdate));
 
-/*     db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
+    /*     db.Location.UpdateOne(req.user.email, equipment_id, (data) => {
       // this function will be called when we delete the item from the list
       // should set Need status to false in the Park_Equipment model
       // and then I will call db.Equipment_Location.getAll to get refreshed data
@@ -137,27 +152,53 @@ module.exports = function(app) {
       where: {
         need: true,
         UserId: req.body.user_id,
-        LocationId: req.body.location_id
+        LocationId: req.body.location_id,
       },
-      include: [db.User, db.Location]
-    }).then(equipment_list => res.json(equipment_list));
+      include: [db.User, db.Location],
+    }).then((equipment_list) => res.json(equipment_list));
 
-/*     let parkId = req.body.location_id;
+    /*     let parkId = req.body.location_id;
     db.Equipment_Location.getAll(req.user.email, parkId, (data) => {
       //should return a list of equipment with Need status true and Own status true or false
       res.render("equipment-list", data);
     }); */
   });
+  app.post("/api/user_profiles/favorites", (req, res) => {
+    db.User_Profiles.create({
+      locationName: req.body.locationName,
+      LocationId: req.body.locationId,
+      UserId: req.user.id,
+      favorite: true,
+    }).then((data) => {
+      res.json(data);
+    });
+  });
+  app.delete("/api/user_profiles/favorites", (req, res) => {
+    db.User_Profiles.destroy({
+      where: { UserId: req.user.id, LocationId: req.body.locationId },
+    }).then((data) => {
+      res.json(data);
+    });
+  });
 
+  app.post("/api/user_profiles/favorites/status", (req, res) => {
+    db.User_Profiles.findOne({
+      where: {
+        UserId: req.user.id,
+        LocationId: req.body.locationId,
+      },
+      attributes: ["favorite"],
+    }).then((favorite_status) => res.json(favorite_status));
+  });
   // PUT route for updating owned status of an item
   app.put("/api/park_equipment/update_own_status", (req, res) => {
     db.Equipment.update(ownedStatus, {
       where: {
-        id: req.body.itemId
-      }
-    }).then(ownedUpdate => res.json(ownedUpdate));
-    
-/*     db.Equipment_Location.updateOne(req.user.email, locationId, (data) => {
+        id: req.body.itemId,
+      },
+    }).then((ownedUpdate) => res.json(ownedUpdate));
+
+    /*     db.Equipment_Location.updateOne(req.user.email, locationId, (data) => {
       // should update Own status to true in the Equipment_Location model
       // and it should return the object back with updated info
       res.render("equipment-list", data);

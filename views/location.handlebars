@@ -1,13 +1,3 @@
-{{!-- This page will hold the premade equiptment list (based on state/park),
-info such as: description-address-website and the weather(based on ZipCode
--Equiptment list:
--if checked yes ex.green
--if checked no ex.red and show link
--submit button creates checklist on checklist.handlebars page
-- Should let users add new items to their checklist
--Weather
--description from database
---}}
 <style>
     .col-md-8 {
         margin-top: 15px;
@@ -96,6 +86,10 @@ h2{
 p{
     font-family: Arial, Helvetica, sans-serif;
 }
+
+    .overflow-auto {
+        height: 300px;
+    }
 </style>
 
 <!-- Page Content -->
@@ -110,8 +104,8 @@ p{
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 class="card-header">{{this.parkname}}<i class="heart fa fa-heart-o" status="false"
-                        title="Email Myself"></i>
+                <h1 id="park-name" class="card-header">{{parkname}}<i id="heart-icon" class="heart fa fa-heart-o"
+                        favorite="null" park-id={{id}}></i>
                     <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
@@ -161,7 +155,7 @@ p{
                 <h5 class="card-header">Equipment List</h5>
                 <div class="card-body card-list">
                     <div class="row">
-                        <div>
+                        <div class="overflow-auto">
                             <ul id="list-group" class="list-group mb-0">
                             </ul>
                         </div>
@@ -189,17 +183,54 @@ p{
             let url = window.location.pathname + "/" + "checklist";
             window.location.replace(url);
         });
-        $(".heart.fa").click(function () {
-            //$(this).toggleClass("fa-heart fa-heart-o");
-            if ($(this).attr("status") == "true") {
-                $(this).attr("class", "heart fa fa-heart")
-                $(this).attr("status", "false")
+        const parkId = $("#heart-icon").attr("park-id");
+        $.post({
+            url: "/api/user_profiles/favorites/status",
+            method: "POST",
+            data: { locationId: parkId }
+        }).then(function (data) {
+            console.log(data.favorite)
+            $("#heart-icon").attr("favorite", data.favorite)
+            if ($("#heart-icon").attr("favorite") == null) {
+                $("#heart-icon").attr("class", "heart fa fa-heart-o");
             } else {
-                $(this).attr("class", "heart fa fa-heart-o")
-                $(this).attr("status", "true")
+                $("#heart-icon").attr("class", "heart fa fa-heart");
+            }
+        })
+
+
+        $(".heart.fa").click(function () {
+            console.log($(this).attr("location-id"))
+
+            if ($(this).attr("favorite") == "null") {
+                $(this).attr("favorite", "true")
+                $(this).attr("class", "heart fa fa-heart");
+                $.ajax({
+                    url: "/api/user_profiles/favorites",
+                    method: "POST",
+                    data: {
+                        locationId: $(this).attr("park-id"),
+                        locationName: $("#park-name").text().trim()
+                    }
+                }).then((err, data) => {
+                    if (err) throw error;
+                })
+            } else {
+                $(this).attr("favorite", "null")
+                $(this).attr("class", "heart fa fa-heart-o");
+                $.ajax({
+                    url: "/api/user_profiles/favorites",
+                    method: "DELETE",
+                    data: {
+                        locationId: $(this).attr("park-id"),
+                    }
+                }).then((err, data) => {
+                    if (err) throw error;
+                })
+
             }
         });
-        $("#own-status").click(function () {
+        $("#own-status").click(function (data) {
             //change own status in database
             if ($(this).attr("status") == "true") {
                 $(this).css("color", "green")

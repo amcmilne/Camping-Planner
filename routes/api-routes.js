@@ -30,6 +30,21 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+  app.get("/favorite-parks", (req, res) => {
+    db.User_Profiles.findAll({
+      raw: true,
+      where: {
+        UserId: req.user.id,
+      },
+      attributes: ["LocationId", "locationName"],
+    }).then((data) => {
+      console.log(data);
+      let handlebarsObj = {
+        favoriteParks: data,
+      };
+      res.render("favorite-parks", handlebarsObj);
+    });
+  });
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
@@ -150,25 +165,30 @@ module.exports = function(app) {
   });
   app.post("/api/user_profiles/favorites", (req, res) => {
     db.User_Profiles.create({
+      locationName: req.body.locationName,
+      LocationId: req.body.locationId,
       UserId: req.user.id,
-      LocationId: req.body.location_id,
-    });
-  });
-  app.post("/api/user_profiles/favorites", (req, res) => {
-    db.User_Profiles.create({
-      UserId: req.user.id,
-      LocationId: req.body.location_id,
+      favorite: true,
     }).then((data) => {
       res.json(data);
     });
   });
   app.delete("/api/user_profiles/favorites", (req, res) => {
     db.User_Profiles.destroy({
-      UserId: req.user.id,
-      LocationId: req.body.location_id,
+      where: { UserId: req.user.id, LocationId: req.body.locationId },
     }).then((data) => {
       res.json(data);
     });
+  });
+
+  app.post("/api/user_profiles/favorites/status", (req, res) => {
+    db.User_Profiles.findOne({
+      where: {
+        UserId: req.user.id,
+        LocationId: req.body.locationId,
+      },
+      attributes: ["favorite"],
+    }).then((favorite_status) => res.json(favorite_status));
   });
   // PUT route for updating owned status of an item
   app.put("/api/park_equipment/update_own_status", (req, res) => {

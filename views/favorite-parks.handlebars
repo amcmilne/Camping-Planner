@@ -30,20 +30,18 @@
     }
 </style>
 <div class="overflow-auto">
+    <h2>Your Favorite Locations!</h2>
     <ul class="list-group">
-        <h2>Choose your favorite Park</h2>
-        <li class="list-group-item" state="OH" parkId="438">1 Favorite Park</li>
-        <li class="list-group-item">2 Favorite Park</li>
-        <li class="list-group-item">3 Favorite Park</li>
-        <li class="list-group-item">4 Favorite Park</li>
-        <li class="list-group-item">5 Favorite Park</li>
+        {{#each favoriteParks}}
+        <li class="list-group-item" value={{LocationId}}>{{locationName}}</li>
+        {{/each}}
     </ul>
 </div>
 <script>
     $(".list-group-item").click((e) => {
-        stateId = "NJ"
-        parkId = 434
-        let url = "locations/" + stateId + "/" + parkId;
+        console.log(e);
+        parkId = e.currentTarget.attributes[1].value;
+        let url = "locations/favorite/" + parkId;
         window.location.replace(url);
     });
 </script>

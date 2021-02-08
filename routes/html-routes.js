@@ -49,9 +49,6 @@ module.exports = function(app) {
       res.render("location", data);
     });
   });
-  app.get("/favorite-parks", isAuthenticated, (req, res) => {
-    res.render("favorite-parks");
-  });
   app.get(
     "/locations/:stateId/:parkId/checklist",
     isAuthenticated,

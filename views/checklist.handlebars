@@ -17,6 +17,10 @@
         padding-bottom: 10px;
         padding-top: 10px;
     }
+
+    #backbutton {
+        float: right;
+    }
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -24,7 +28,12 @@
 
         <div class="col-md-4">
             <div class="card bg-light mb-3">
-                <div class="card-header">Checklist</div>
+                <div class="card-header">Your Personalized Checklist</div>
+                <div class="card-header"> <span style="margin:5px">Please return to previous page to update your
+                        checklist.&nbsp;</span> <input id="backbutton" action="action" type="button" value="Back"
+                        onclick="window.history.go(-1); return false;" /></div>
+                <div class="card-header"><span style="margin:5px">&nbsp;</span><button onclick="window.print()">Print this page</button>
+                </div>
                 <div class="card body">
                     <div>
                         <ul id="list-group" class="list-group list-group-flush">
@@ -73,11 +82,11 @@
 <script type="text/javascript">
     var itemsSelectedJSON = localStorage.getItem('itemList');
     itemsSelected = JSON.parse(itemsSelectedJSON);
-    
+
     var equipmentHtmlContainer = "";
 
     itemsSelected.forEach(item => {
-        equipmentHtmlContainer += `</i><li data-item=${item.itemname}>${item.itemname}</li>` 
+        equipmentHtmlContainer += `</i><li data-item=${item.itemname}>${item.itemname}</li>`
     });
 
     document.getElementById("list-group").innerHTML += equipmentHtmlContainer;

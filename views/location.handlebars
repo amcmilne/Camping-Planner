@@ -20,14 +20,16 @@
     }
 
     .fa-paper-plane:hover {
-        font-size: 1.1em;
+        font-size: 1.65em;
         transition: 0.05s ease-out;
     }
 
-    .fa-paper-plane {
+    .fa-paper-plane,
+    .fa-check-circle {
         float: right;
-        color: violet;
-        margin-right: 10px;
+        color: rgb(148, 9, 208);
+        font-size: 25px;
+        margin-left: 10px;
     }
 
     .heart {
@@ -61,21 +63,22 @@
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 id="park-name" class="card-header">{{parkname}}<i id="heart-icon" class="heart fa fa-heart-o"
+                <h1 id="park-name" class="card-header">{{parkname}}<i id="send-email" title="Email Myself"
+                        class="fa fa-paper-plane"></i><i id="heart-icon" title="Favorite" class="heart fa fa-heart-o"
                         favorite="null" park-id={{id}}></i>
                     <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
                 <div class="card-body">
-                    <h2>State: {{state}}</h2>
-                    <h2>Address: {{address}}</h2>
-                    <h2>Website: <a href={{url}} target="_blank">{{url}}</a></h2>
+                    <h2 id="state">State: {{state}}</h2>
+                    <h2 id="address">Address: {{address}}</h2>
+                    <h2 id="website">Website: <a href={{url}} target="_blank">{{url}}</a></h2>
                     <br>
                     <h2>Park Description</h2>
-                    <p>{{description}}</p>
+                    <p id="park-description">{{description}}</p>
                     <br>
                     <h2>Weather Description</h2>
-                    <p>{{weather_description}}</p>
+                    <p id="weather-description">{{weather_description}}</p>
 
                 </div>
 
@@ -83,7 +86,7 @@
         </div>
         <div class="col-md-4">
             <div class="card my-4">
-                <h5 class="card-header">Add equipment for visiting this park</h5>
+                <h5 class="card-header">Add equipment you will need for {{parkname}} Camping</h5>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Equipment Name...">
@@ -96,7 +99,7 @@
 
 
             <div class="card my-4">
-                <h5 class="card-header">Equipment List</h5>
+                <h5 class="card-header">Needed Equipment </h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="overflow-auto">
@@ -122,6 +125,7 @@
     </div>
 
     <script>
+        //Favorite Parks Functionality
         $("#checklist").click((e) => {
             let url = window.location.pathname + "/" + "checklist";
             window.location.replace(url);
@@ -132,7 +136,6 @@
             method: "POST",
             data: { locationId: parkId }
         }).then(function (data) {
-            console.log(data.favorite)
             $("#heart-icon").attr("favorite", data.favorite)
             if ($("#heart-icon").attr("favorite") == null) {
                 $("#heart-icon").attr("class", "heart fa fa-heart-o");
@@ -140,8 +143,6 @@
                 $("#heart-icon").attr("class", "heart fa fa-heart");
             }
         })
-
-
         $(".heart.fa").click(function () {
             console.log($(this).attr("location-id"))
 
@@ -173,7 +174,35 @@
 
             }
         });
-        $("#own-status").click(function (data) {
+
+        // Email Functionality
+        var emailSubjectContainer = "Camping Planner" + $("#park-name").text().trim();
+        var emailBodyContainer = `${$("#park-name").text().trim()}
+${$("#state").text().trim()}
+${$("#address").text().trim()}
+${$("#website").text().trim()}
+Park Description:
+    ${$("#park-description").text().trim()}
+Weather Description:
+    ${$("#weather-description").text().trim()}`;
+        var emailObj = {
+            subject: emailSubjectContainer,
+            body: emailBodyContainer
+        }
+        $(".fa-paper-plane").click(function () {
+            $.ajax({
+                url: "/api/send_email",
+                method: "POST",
+                data: emailObj
+            }).then(data => {
+                if (data.id) {
+                    $("#send-email").attr("class", "fa fa-check-circle")
+                    $("#send-email").attr("title", "Email Sent!")
+                    $("#send-email").css("color", "green")
+                }
+            })
+        })
+        $("#own-status").click(function () {
             //change own status in database
             if ($(this).attr("status") == "true") {
                 $(this).css("color", "green")

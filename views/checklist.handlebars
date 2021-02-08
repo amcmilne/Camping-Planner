@@ -42,11 +42,11 @@
 <script type="text/javascript">
     var itemsSelectedJSON = localStorage.getItem('itemList');
     itemsSelected = JSON.parse(itemsSelectedJSON);
-    
+
     var equipmentHtmlContainer = "";
 
     itemsSelected.forEach(item => {
-        equipmentHtmlContainer += `<i class="far fa-arrow-alt-circle-right"></i><li data-item=${item.itemname}>${item.itemname}</li>` 
+        equipmentHtmlContainer += `<i class="far fa-arrow-alt-circle-right"></i><li data-item=${item.itemname}>${item.itemname}</li>`
     });
 
     document.getElementById("list-group").innerHTML += equipmentHtmlContainer;

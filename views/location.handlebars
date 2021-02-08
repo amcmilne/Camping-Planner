@@ -1,6 +1,6 @@
 {{!-- This page will hold the premade equiptment list (based on state/park),
 info such as: description-address-website and the weather(based on ZipCode
--Equiptment list:
+-Equipment list:
 -if checked yes ex.green
 -if checked no ex.red and show link
 -submit button creates checklist on checklist.handlebars page
@@ -79,16 +79,16 @@ info such as: description-address-website and the weather(based on ZipCode
                 <h5 class="card-header">Add equipment for visiting this park</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Equipment Name...">
+                        <input id="addEquipment" type="text" class="form-control" placeholder="Equipment Name...">
                         <span class="input-group-append">
-                            <button class="btn btn-secondary" type="button">Add</button>
+                            <button class="btn btn-secondary" type="button"  onclick="AddEquipment('something')">Add</button>
                         </span>
                     </div>
                 </div>
             </div>
 
             <div class="card my-4">
-                <h5 class="card-header">Equipment List</h5>
+                <h5 class="card-header">Recommended Equipment List</h5>
                 <h4 class="card-header">Please check all equipment you already OWN.</h4>
                 <div class="card-body">
                     <div class="row">
@@ -117,7 +117,7 @@ info such as: description-address-website and the weather(based on ZipCode
 
 <script>
     function saveList() {
-        // loop through the list items and only get return the items that are not checked.
+        // loop through the list items and only return the items that are not checked.
         equipmentListSelected = $("#list-group>li").map(function () {
             let o = this;
             let isSelected = o.querySelector('input[type=checkbox]').checked;
@@ -361,4 +361,9 @@ info such as: description-address-website and the weather(based on ZipCode
         equipmentHtmlContainer += `<li data-Category="${item.Category}" data-ItemName="${item.ItemName}">${item.ItemName}<input id="selection" type="checkbox"></i></li>`
     });
     document.getElementById("list-group").innerHTML += equipmentHtmlContainer;
+
+    function AddEquipment(){
+        let item =  document.getElementById('addEquipment').value;
+        document.getElementById("list-group").innerHTML  += `<li data-Category="Other" data-ItemName="` + item + `">` + item + `<input id="selection" type="checkbox"></i></li>`
+    }
 </script>

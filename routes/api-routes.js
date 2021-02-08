@@ -2,7 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-const Handlebars = require("handlebars");
+const mailgun = require("mailgun-js");
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -66,9 +66,9 @@ module.exports = function(app) {
   app.post("/api/send_email", isAuthenticated, (req, res) => {
     const data = {
       from: process.env.mailgun_from_address,
-      to: req.body.to,
+      to: req.user.email,
       subject: req.body.subject,
-      text: req.body.text,
+      text: req.body.body,
     };
     //console.log(data);
     const DOMAIN = process.env.mailgun_domain;

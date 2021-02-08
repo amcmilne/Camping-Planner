@@ -28,10 +28,12 @@
         transform: translate(-50%, -50%)
     }
 
-    .list-group-item {
-        background: rgb(255, 255, 255, 0.3);
-        color: white;
-    }
+  .list-group-item {
+    background: rgba(255, 255, 255, 0.637);
+    color: #734338;
+    text-align: center;
+    font-size: 20px;
+  }
     
     /*navbar style*/
 .navbar{
@@ -43,6 +45,13 @@
 .navbar-item{
   color: white;
   font-family: 'Yusei Magic', sans-serif;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navbar-toggler{
+background-color: #734338;
 }
 
 /* Buttons */
@@ -60,22 +69,36 @@
 }
 
 .center{
-    width: 350px;
+    width: 400px;
     height: 300px;
 }
+  .margin {
+      margin-top: 30px;
+  }
 
+.scroll:hover {
+    cursor: pointer;
+}
+
+/*footer*/
+.footer{
+  margin-top: 100px;
+}
 </style>
 
 
 <div class="container background ">
 <div class="row" "overflow-auto">
     <h2>Chose a National Park!</h2>
-    <ul class="list-group">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+    <ul class="list-group overflow-scroll margin scroll center">
         {{#each parks}}
         <li class="list-group-item" value={{id}}>{{parkname}}</li>
         {{/each}}
-
     </ul>
+    </div>
+     <div class="col-md-2"></div>
 </div>
 </div>
 

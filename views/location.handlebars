@@ -9,22 +9,30 @@ info such as: description-address-website and the weather(based on ZipCode
 -description from database
 --}}
 <style>
+
     .col-md-8 {
         margin-top: 15px;
     }
 
     .card-header {
         display: block;
+        
     }
 
     .card{
-        background: rgba(255, 255, 255, 0.247);
-        color: White;
+        background:rgba(255, 255, 255, 0.829);
+        font-size: 18px;
+        color: #734338;
        
     }
 
     .card-list{
-        color: gray;
+        color: #734338;
+        font-size: 18px;
+    }
+
+    .scroll:hover {
+        cursor: pointer;
     }
 
     #own-status {
@@ -67,50 +75,78 @@ info such as: description-address-website and the weather(based on ZipCode
         font-size: 1.1em;
         transition: 0.05s ease-out;
     }
-/*navbar style*/
-.navbar{
-  background-color: #bc674d;
-}
 
-.navbar-item{
+    /*navbar style*/
+    .navbar{
+    background-color: #bc674d;
+    }
+
+    .navbar-item{
   color: white;
   font-family: 'Yusei Magic', sans-serif;
-}
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+    }
+    
+    .navbar-toggler{
+    background-color: #734338;
+    }
 
-/* Buttons */
-.button {
-  background-color: #734338;
-  color: white;
-  font-family: 'Yusei Magic', sans-serif;
-}
-#btn-blu,
-.btn-blu {
-  background-color: #a3cfd9;
-  color: white;
-  font-family: 'Yusei Magic', sans-serif;
-}
+    /* Buttons */
+    .button {
+    background-color: #734338;
+    color: white;
+    font-family: 'Yusei Magic', sans-serif;
+    }
+    #btn-blu,
+    .btn-blu {
+    background-color: #a3cfd9;
+    color: white;
+    font-family: 'Yusei Magic', sans-serif;
+    }
 
-h1,
-h2{
- font-family: 'Yusei Magic', sans-serif;
+    /*text style*/
+    h4,
+    h5,
+    h1,
+    h2{
+    font-family: 'Yusei Magic', sans-serif;
+    color: #84815D;
+    }
 
-}
-p{
-    font-family: Arial, Helvetica, sans-serif;
-}
+    h5 {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    p{
+        font-family: Arial, Helvetica, sans-serif;
+        color: #734338;
+    }
+
+    #park-name {
+        text-align: center;
+        color: #CCA587 ;
+    }
 
     .overflow-auto {
         height: 300px;
+        overflow-y: hidden;
     }
     #selection {
         float: right;
     }
-    h5 {
-        text-align: center;
-    }
-    h4 {
-        text-align: center;
-    }
+
+.float{
+    float: right;
+    margin-top: 20px;
+}
+
+/*footer*/
+.footer{
+  margin-top: 100px;
+}
 </style>
 
 <!-- Page Content -->
@@ -125,10 +161,11 @@ p{
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <h1 id="park-name" class="card-header">{{parkname}}<i id="send-email" title="Email Myself"
+                <h1 id="park-name" class="card-header">{{parkname}}
+                    <div class="container float col-md-2 clearfix">
+                        <i id="send-email" title="Email Myself"
                         class="fa fa-paper-plane"></i><i id="heart-icon" title="Favorite" class="heart fa fa-heart-o"
                         favorite="null" park-id={{id}}></i>
-                    <div class="container col-md-2 clearfix">
                     </div>
                 </h1>
                 <div class="card-body">
@@ -154,7 +191,7 @@ p{
 
         <div class="col-md-4">
             <div class="card my-4">
-                <h5 class="card-header">Add equipment you will need for {{parkname}} Camping</h5>
+                <h5 class="card-header">Add equipment you will need for <strong> {{parkname}} </strong> Camping</h5>
                 <div class="card-body">
                     <div class="input-group">
                         <input id="addEquipment" type="text" class="form-control" placeholder="Equipment Name...">
@@ -172,7 +209,7 @@ p{
                 <h4 class="card-header">Please check all equipment you already OWN.</h4>
                 <div class="card-body card-list">
                     <div class="row">
-                        <div class="overflow-auto">
+                        <div class="overflow-auto scroll">
                             <ul id="list-group" class="list-group mb-0">
                             </ul>
                         </div>

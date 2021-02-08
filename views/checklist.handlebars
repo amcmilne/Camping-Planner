@@ -4,6 +4,24 @@
 
 --}}
 <style>
+    
+    /*navbar style*/
+    .navbar{
+    background-color: #bc674d;
+    }
+
+    .navbar-item{
+  color: white;
+  font-family: 'Yusei Magic', sans-serif;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+    }
+
+    .navbar-toggler{
+    background-color: #734338;
+    }
+
     #selection {
         float: right;
     }
@@ -16,25 +34,63 @@
     .card {
         padding-bottom: 10px;
         padding-top: 10px;
+        background: rgba(255, 255, 255, 0.247);
+        color: White;
+    }
+
+    .card-header {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    }
+
+    .header-size {
+        font-size: 30px;
     }
 
     #backbutton {
+    background-color: #DBB99C;
+    
+    }
+ 
+    .btn-blu,
+    #btn-blu {
+    float: left;
+    background-color: #a3cfd9;
+    color: white;
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 18px;
+    }
+
+    .float{
         float: right;
     }
+
+    .margin {
+        margin-top: 20px;
+    }
+
+    /*footer*/
+.footer{
+  margin-top: 100px;
+}
+
 </style>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
 
-        <div class="col-md-4">
-            <div class="card bg-light mb-3">
-                <div class="card-header">Your Personalized Checklist</div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header header-size">Your Personalized Checklist</div>
                 <div class="card-header"> <span style="margin:5px">Please return to previous page to update your
-                        checklist.&nbsp;</span> <input id="backbutton" action="action" type="button" value="Back"
-                        onclick="window.history.go(-1); return false;" /></div>
-                <div class="card-header"><span style="margin:5px">&nbsp;</span><button onclick="window.print()">Print this page</button>
+                        checklist.&nbsp;</span>
+                    <div class="card-header margin"><span style="margin:5px">&nbsp;</span><button id="backbutton" onclick="window.print()">Print this page</button>
+                        <input id="backbutton" action="action" type="button" value="Back"
+                        onclick="window.history.go(-1); return false;" />
+                    </div>
                 </div>
-                <div class="card body">
+                <div class="card-body">
                     <div>
                         <ul id="list-group" class="list-group list-group-flush">
                         </ul>
@@ -42,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 

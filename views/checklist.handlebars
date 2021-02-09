@@ -4,22 +4,21 @@
 
 --}}
 <style>
-    
     /*navbar style*/
-    .navbar{
-    background-color: #bc674d;
+    .navbar {
+        background-color: #bc674d;
     }
 
-    .navbar-item{
-  color: white;
-  font-family: 'Yusei Magic', sans-serif;
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+    .navbar-item {
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
-    .navbar-toggler{
-    background-color: #734338;
+    .navbar-toggler {
+        background-color: #734338;
     }
 
     #selection {
@@ -34,35 +33,39 @@
     .card {
         padding-bottom: 10px;
         padding-top: 10px;
-        background: rgba(255, 255, 255, 0.247);
-        color: White;
+        background: rgba(255, 255, 255, 0.829);
+        font-size: 18px;
+        color: #734338;
+        border-radius: 15px;
+
     }
 
     .card-header {
-    font-family: 'Yusei Magic', sans-serif;
-    font-size: 20px;
-    text-align: center;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 20px;
+        text-align: center;
     }
 
     .header-size {
         font-size: 30px;
+        color: #84815D;
     }
 
     #backbutton {
-    background-color: #DBB99C;
-    
-    }
- 
-    .btn-blu,
-    #btn-blu {
-    float: left;
-    background-color: #a3cfd9;
-    color: white;
-    font-family: 'Yusei Magic', sans-serif;
-    font-size: 18px;
+        background-color: #DBB99C;
+
     }
 
-    .float{
+    .btn-blu,
+    #btn-blu {
+        float: left;
+        background-color: #a3cfd9;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 18px;
+    }
+
+    .float {
         float: right;
     }
 
@@ -70,11 +73,16 @@
         margin-top: 20px;
     }
 
-    /*footer*/
-.footer{
-  margin-top: 100px;
-}
+    /* footer */
+    .footer {
+        color: black;
+    }
 
+    footer {
+        margin-top: 100px;
+        background: rgba(255, 255, 255, 0.637);
+
+    }
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -85,9 +93,10 @@
                 <div class="card-header header-size">Your Personalized Checklist</div>
                 <div class="card-header"> <span style="margin:5px">Please return to previous page to update your
                         checklist.&nbsp;</span>
-                    <div class="card-header margin"><span style="margin:5px">&nbsp;</span><button id="backbutton" onclick="window.print()">Print this page</button>
+                    <div class="card-header margin"><span style="margin:5px">&nbsp;</span><button id="backbutton"
+                            onclick="window.print()">Print this page</button>
                         <input id="backbutton" action="action" type="button" value="Back"
-                        onclick="window.history.go(-1); return false;" />
+                            onclick="window.history.go(-1); return false;" />
                     </div>
                 </div>
                 <div class="card-body">

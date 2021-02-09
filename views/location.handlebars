@@ -9,24 +9,23 @@ info such as: description-address-website and the weather(based on ZipCode
 -description from database
 --}}
 <style>
-
     .col-md-8 {
         margin-top: 15px;
     }
 
     .card-header {
         display: block;
-        
+
     }
 
-    .card{
-        background:rgba(255, 255, 255, 0.829);
+    .card {
+        background: rgba(255, 255, 255, 0.829);
         font-size: 18px;
         color: #734338;
-       
+        border-radius: 15px;
     }
 
-    .card-list{
+    .card-list {
         color: #734338;
         font-size: 18px;
     }
@@ -77,42 +76,44 @@ info such as: description-address-website and the weather(based on ZipCode
     }
 
     /*navbar style*/
-    .navbar{
-    background-color: #bc674d;
+    .navbar {
+        background-color: #bc674d;
     }
 
-    .navbar-item{
-  color: white;
-  font-family: 'Yusei Magic', sans-serif;
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+    .navbar-item {
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        
     }
-    
-    .navbar-toggler{
-    background-color: #734338;
+
+    .navbar-toggler {
+        background-color: #734338;
     }
 
     /* Buttons */
     .button {
-    background-color: #734338;
-    color: white;
-    font-family: 'Yusei Magic', sans-serif;
+        background-color: #734338;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
     }
+
     #btn-blu,
     .btn-blu {
-    background-color: #a3cfd9;
-    color: white;
-    font-family: 'Yusei Magic', sans-serif;
+        background-color: #a3cfd9;
+        color: white;
+        font-family: 'Yusei Magic', sans-serif;
     }
 
     /*text style*/
     h4,
     h5,
     h1,
-    h2{
-    font-family: 'Yusei Magic', sans-serif;
-    color: #84815D;
+    h2 {
+        font-family: 'Yusei Magic', sans-serif;
+        color: #84815D;
     }
 
     h5 {
@@ -120,39 +121,56 @@ info such as: description-address-website and the weather(based on ZipCode
         font-size: 20px;
     }
 
-    p{
+    p {
         font-family: Arial, Helvetica, sans-serif;
         color: #734338;
     }
 
     #park-name {
         text-align: center;
-        color: #CCA587 ;
+        color: #CCA587;
     }
 
     .overflow-auto {
         height: 300px;
-        overflow-y: hidden;
+
     }
+
     #selection {
         float: right;
     }
 
-.float{
-    float: right;
-    margin-top: 20px;
-}
+    .float {
+        float: right;
+        margin-top: 20px;
+    }
 
-/*footer*/
-.footer{
-  margin-top: 100px;
-}
+    /* footer */
+    .footer {
+        color: black;
+    }
+
+    footer {
+        margin-top: 100px;
+        background: rgba(255, 255, 255, 0.637);
+
+    }
+
+
+    #child {
+        width: 100%;
+        height: 200px;
+        overflow-y: scroll;
+        padding-right: 25px;
+        /* Increase/decrease this value for cross-browser compatibility */
+
+    }
 </style>
 
 <!-- Page Content -->
 <br>
 
-  <div class="container">
+<div class="container">
 
     <div class="row">
 
@@ -163,9 +181,8 @@ info such as: description-address-website and the weather(based on ZipCode
             <div class="card mb-4">
                 <h1 id="park-name" class="card-header">{{parkname}}
                     <div class="container float col-md-2 clearfix">
-                        <i id="send-email" title="Email Myself"
-                        class="fa fa-paper-plane"></i><i id="heart-icon" title="Favorite" class="heart fa fa-heart-o"
-                        favorite="null" park-id={{id}}></i>
+                        <i id="send-email" title="Email Myself" class="fa fa-paper-plane"></i><i id="heart-icon"
+                            title="Favorite" class="heart fa fa-heart-o" favorite="null" park-id={{id}}></i>
                     </div>
                 </h1>
                 <div class="card-body">
@@ -207,9 +224,9 @@ info such as: description-address-website and the weather(based on ZipCode
             <div class="card my-4">
                 <h5 class="card-header">Recommended Equipment List</h5>
                 <h4 class="card-header">Please check all equipment you already OWN.</h4>
-                <div class="card-body card-list">
+                <div class="card-body card-list" id="parent">
                     <div class="row">
-                        <div class="overflow-auto scroll">
+                        <div class="overflow-auto scroll" id="child">
                             <ul id="list-group" class="list-group mb-0">
                             </ul>
                         </div>
@@ -232,89 +249,89 @@ info such as: description-address-website and the weather(based on ZipCode
     </div>
 </div>
 
-    <script>
+<script>
 
-        function saveList() {
-            // loop through the list items and only return the items that are not checked.
-            equipmentListSelected = $("#list-group>li").map(function () {
-                let o = this;
-                let isSelected = o.querySelector('input[type=checkbox]').checked;
-                if (!isSelected) {
-                    return Object.keys(o.dataset).reduce(
-                        function (returnValue, dsValue) {
-                            returnValue[dsValue] = o.dataset[dsValue];
-                            return returnValue;
-                        },
-                        {}
-                    )
-                }
-            }).get();
-            //console.log(result);
-            // put the final list in local storage for the next page.
-            let lsKeyName = "itemList";
-            if (localStorage.getItem(lsKeyName) !== null) {
-                localStorage.removeItem(lsKeyName)
+    function saveList() {
+        // loop through the list items and only return the items that are not checked.
+        equipmentListSelected = $("#list-group>li").map(function () {
+            let o = this;
+            let isSelected = o.querySelector('input[type=checkbox]').checked;
+            if (!isSelected) {
+                return Object.keys(o.dataset).reduce(
+                    function (returnValue, dsValue) {
+                        returnValue[dsValue] = o.dataset[dsValue];
+                        return returnValue;
+                    },
+                    {}
+                )
             }
-
-            localStorage.setItem(lsKeyName, JSON.stringify(equipmentListSelected));
+        }).get();
+        //console.log(result);
+        // put the final list in local storage for the next page.
+        let lsKeyName = "itemList";
+        if (localStorage.getItem(lsKeyName) !== null) {
+            localStorage.removeItem(lsKeyName)
         }
 
-
-        $("#checklist").click((e) => {
-            saveList();
-            let url = window.location.pathname + "/" + "checklist";
-            window.location.replace(url);
-        });
+        localStorage.setItem(lsKeyName, JSON.stringify(equipmentListSelected));
+    }
 
 
-        const parkId = $("#heart-icon").attr("park-id");
-        $.post({
-            url: "/api/user_profiles/favorites/status",
-            method: "POST",
-            data: { locationId: parkId }
-        }).then(function (data) {
-            $("#heart-icon").attr("favorite", data.favorite)
-            if ($("#heart-icon").attr("favorite") == null) {
-                $("#heart-icon").attr("class", "heart fa fa-heart-o");
-            } else {
-                $("#heart-icon").attr("class", "heart fa fa-heart");
-            }
-        })
-        $(".heart.fa").click(function () {
-            console.log($(this).attr("location-id"))
+    $("#checklist").click((e) => {
+        saveList();
+        let url = window.location.pathname + "/" + "checklist";
+        window.location.replace(url);
+    });
 
-            if ($(this).attr("favorite") == "null") {
-                $(this).attr("favorite", "true")
-                $(this).attr("class", "heart fa fa-heart");
-                $.ajax({
-                    url: "/api/user_profiles/favorites",
-                    method: "POST",
-                    data: {
-                        locationId: $(this).attr("park-id"),
-                        locationName: $("#park-name").text().trim()
-                    }
-                }).then((err, data) => {
-                    if (err) throw error;
-                })
-            } else {
-                $(this).attr("favorite", "null")
-                $(this).attr("class", "heart fa fa-heart-o");
-                $.ajax({
-                    url: "/api/user_profiles/favorites",
-                    method: "DELETE",
-                    data: {
-                        locationId: $(this).attr("park-id"),
-                    }
-                }).then((err, data) => {
-                    if (err) throw error;
-                })
 
-            }
-        });
+    const parkId = $("#heart-icon").attr("park-id");
+    $.post({
+        url: "/api/user_profiles/favorites/status",
+        method: "POST",
+        data: { locationId: parkId }
+    }).then(function (data) {
+        $("#heart-icon").attr("favorite", data.favorite)
+        if ($("#heart-icon").attr("favorite") == null) {
+            $("#heart-icon").attr("class", "heart fa fa-heart-o");
+        } else {
+            $("#heart-icon").attr("class", "heart fa fa-heart");
+        }
+    })
+    $(".heart.fa").click(function () {
+        console.log($(this).attr("location-id"))
 
-        // Email Functionality
-        var emailSubjectContainer = "Camping Planner" + $("#park-name").text().trim();
-        var emailBodyContainer = `${$("#park-name").text().trim()}
+        if ($(this).attr("favorite") == "null") {
+            $(this).attr("favorite", "true")
+            $(this).attr("class", "heart fa fa-heart");
+            $.ajax({
+                url: "/api/user_profiles/favorites",
+                method: "POST",
+                data: {
+                    locationId: $(this).attr("park-id"),
+                    locationName: $("#park-name").text().trim()
+                }
+            }).then((err, data) => {
+                if (err) throw error;
+            })
+        } else {
+            $(this).attr("favorite", "null")
+            $(this).attr("class", "heart fa fa-heart-o");
+            $.ajax({
+                url: "/api/user_profiles/favorites",
+                method: "DELETE",
+                data: {
+                    locationId: $(this).attr("park-id"),
+                }
+            }).then((err, data) => {
+                if (err) throw error;
+            })
+
+        }
+    });
+
+    // Email Functionality
+    var emailSubjectContainer = "Camping Planner" + $("#park-name").text().trim();
+    var emailBodyContainer = `${$("#park-name").text().trim()}
 ${$("#state").text().trim()}
 ${$("#address").text().trim()}
 ${$("#website").text().trim()}
@@ -322,227 +339,227 @@ Park Description:
     ${$("#park-description").text().trim()}
 Weather Description:
     ${$("#weather-description").text().trim()}`;
-        var emailObj = {
-            subject: emailSubjectContainer,
-            body: emailBodyContainer
-        }
-        $(".fa-paper-plane").click(function () {
-            $.ajax({
-                url: "/api/send_email",
-                method: "POST",
-                data: emailObj
-            }).then(data => {
-                if (data.id) {
-                    $("#send-email").attr("class", "fa fa-check-circle")
-                    $("#send-email").attr("title", "Email Sent!")
-                    $("#send-email").css("color", "green")
-                }
-            })
-        })
-        $("#own-status").click(function () {
-            //change own status in database
-            if ($(this).attr("status") == "true") {
-                $(this).css("color", "green")
-                $(this).attr("status", "false")
-            } else {
-                $(this).css("color", "red")
-                $(this).attr("status", "true")
+    var emailObj = {
+        subject: emailSubjectContainer,
+        body: emailBodyContainer
+    }
+    $(".fa-paper-plane").click(function () {
+        $.ajax({
+            url: "/api/send_email",
+            method: "POST",
+            data: emailObj
+        }).then(data => {
+            if (data.id) {
+                $("#send-email").attr("class", "fa fa-check-circle")
+                $("#send-email").attr("title", "Email Sent!")
+                $("#send-email").css("color", "green")
             }
-
         })
-
-    </script>
-
-    <script type="text/javascript">
-        var equipmentList =
-            [
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Stove And Fuel"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Matches/Light/Firestarter"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Cook Pots"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Frying Pan"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Eating Utensils"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Cooking Utensils"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Bottle Opener/Can Opener"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Sharp Knife"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Plates/Bowls"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Mugs/Cups"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Cutting Board"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Cooler"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Water Bottles"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Camp Sink"
-                },
-                {
-                    "Category": "Kitchen",
-                    "ItemName": "Soap"
-                },
-                {
-                    "Category": "Tools",
-                    "ItemName": "Multi-Tool"
-                },
-                {
-                    "Category": "Tools",
-                    "ItemName": "Duct Tape"
-                },
-                {
-                    "Category": "Tools",
-                    "ItemName": "Extra Cord"
-                },
-                {
-                    "Category": "Tools",
-                    "ItemName": "Mallet/Hammer"
-                },
-                {
-                    "Category": "Tools",
-                    "ItemName": "Saw/Axe"
-                },
-                {
-                    "Category": "Clothing",
-                    "ItemName": "Moisture Wicking Garments"
-                },
-                {
-                    "Category": "Clothing",
-                    "ItemName": "Long Sleeves"
-                },
-                {
-                    "Category": "Clothing",
-                    "ItemName": "Jacket"
-                },
-                {
-                    "Category": "Clothing",
-                    "ItemName": "Boots/Shoes"
-                },
-                {
-                    "Category": "Clothing",
-                    "ItemName": "Socks"
-                },
-                {
-                    "Category": "Clothing",
-                    "ItemName": "Sleepwear"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Toilet Paper"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Hand Sanitizer"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Toothbrush/Toothpaste"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Towels"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "First Aid Kit/Supplies"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Sunscreen"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Bug Spray"
-                },
-                {
-                    "Category": "Hygiene",
-                    "ItemName": "Lip Balm"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Firewood"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Cots"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Grill"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Portable Coffee/Tea Maker"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Solar/Portable Power"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Binoculars"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Rain Gear"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Snow Gear"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Gloves/Mittens"
-                },
-                {
-                    "Category": "Optional",
-                    "ItemName": "Warm Hat"
-                }
-            ]
-
-        var equipmentHtmlContainer = "";
-
-        equipmentList.forEach(item => {
-            equipmentHtmlContainer += `<li data-Category="${item.Category}" data-ItemName="${item.ItemName}">${item.ItemName}<input id="selection" type="checkbox"></i></li>`
-        });
-        document.getElementById("list-group").innerHTML += equipmentHtmlContainer;
-
-        function AddEquipment() {
-            let item = document.getElementById('addEquipment').value;
-            document.getElementById("list-group").innerHTML += `<li data-Category="Other" data-ItemName="` + item + `">` + item + `<input id="selection" type="checkbox"></i></li>`
+    })
+    $("#own-status").click(function () {
+        //change own status in database
+        if ($(this).attr("status") == "true") {
+            $(this).css("color", "green")
+            $(this).attr("status", "false")
+        } else {
+            $(this).css("color", "red")
+            $(this).attr("status", "true")
         }
-    </script>
+
+    })
+
+</script>
+
+<script type="text/javascript">
+    var equipmentList =
+        [
+            {
+                "Category": "Kitchen",
+                "ItemName": "Stove And Fuel"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Matches/Light/Firestarter"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Cook Pots"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Frying Pan"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Eating Utensils"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Cooking Utensils"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Bottle Opener/Can Opener"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Sharp Knife"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Plates/Bowls"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Mugs/Cups"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Cutting Board"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Cooler"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Water Bottles"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Camp Sink"
+            },
+            {
+                "Category": "Kitchen",
+                "ItemName": "Soap"
+            },
+            {
+                "Category": "Tools",
+                "ItemName": "Multi-Tool"
+            },
+            {
+                "Category": "Tools",
+                "ItemName": "Duct Tape"
+            },
+            {
+                "Category": "Tools",
+                "ItemName": "Extra Cord"
+            },
+            {
+                "Category": "Tools",
+                "ItemName": "Mallet/Hammer"
+            },
+            {
+                "Category": "Tools",
+                "ItemName": "Saw/Axe"
+            },
+            {
+                "Category": "Clothing",
+                "ItemName": "Moisture Wicking Garments"
+            },
+            {
+                "Category": "Clothing",
+                "ItemName": "Long Sleeves"
+            },
+            {
+                "Category": "Clothing",
+                "ItemName": "Jacket"
+            },
+            {
+                "Category": "Clothing",
+                "ItemName": "Boots/Shoes"
+            },
+            {
+                "Category": "Clothing",
+                "ItemName": "Socks"
+            },
+            {
+                "Category": "Clothing",
+                "ItemName": "Sleepwear"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Toilet Paper"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Hand Sanitizer"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Toothbrush/Toothpaste"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Towels"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "First Aid Kit/Supplies"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Sunscreen"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Bug Spray"
+            },
+            {
+                "Category": "Hygiene",
+                "ItemName": "Lip Balm"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Firewood"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Cots"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Grill"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Portable Coffee/Tea Maker"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Solar/Portable Power"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Binoculars"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Rain Gear"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Snow Gear"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Gloves/Mittens"
+            },
+            {
+                "Category": "Optional",
+                "ItemName": "Warm Hat"
+            }
+        ]
+
+    var equipmentHtmlContainer = "";
+
+    equipmentList.forEach(item => {
+        equipmentHtmlContainer += `<li data-Category="${item.Category}" data-ItemName="${item.ItemName}">${item.ItemName}<input id="selection" type="checkbox"></i></li>`
+    });
+    document.getElementById("list-group").innerHTML += equipmentHtmlContainer;
+
+    function AddEquipment() {
+        let item = document.getElementById('addEquipment').value;
+        document.getElementById("list-group").innerHTML += `<li data-Category="Other" data-ItemName="` + item + `">` + item + `<input id="selection" type="checkbox"></i></li>`
+    }
+</script>

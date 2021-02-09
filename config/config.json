@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "webapi",
-    "password": "password123",
+    "username": "root",
+    "password": "root",
     "database": "campaignPlanner_DB",
     "host": "localhost",
     "dialect": "mysql"

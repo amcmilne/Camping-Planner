@@ -15,18 +15,21 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "2.4.3",
+    "bootstrap": "^3.4.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
-    "express-session": "^1.16.1",
+    "express-session": "^1.17.1",
     "handlebars": "^4.7.6",
+    "i": "^0.3.6",
     "mailgun-js": "^0.22.0",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
     "mysql2": "^1.6.5",
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^5.22.3"
+    "sequelize": "^5.22.3",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

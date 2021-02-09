@@ -1,7 +1,7 @@
 <style>
   .overflow-auto {
     width: 300px;
-    height: 200px;
+    height: auto;
   }
 
   h2,
@@ -9,7 +9,10 @@
     margin: 10px;
     text-align: center;
     color: white;
+    font-family: 'Yusei Magic', sans-serif;
+
   }
+
 
   h1 {
     margin-top: 100px;
@@ -21,21 +24,103 @@
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
   }
+
 
   .list-group-item {
-    background: rgb(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.637);
+    color: #734338;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .background {
+    color: White;
+  }
+
+  /* Navbar */
+  .navbar {
+    background-color: #bc674d;
+  }
+
+  .logout {
+    margin-left: 30px;
+  }
+
+  .navbar-item {
     color: white;
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .navbar-toggler {
+    background-color: #734338;
+  }
+
+  /* Buttons */
+  .button {
+    background-color: #734338;
+    color: white;
+    font-family: 'Yusei Magic', sans-serif;
+  }
+
+  .btn-blu {
+    background-color: #a3cfd9;
+    color: white;
+    font-family: 'Yusei Magic', sans-serif;
+  }
+
+  .center {
+    width: 350px;
+    height: 300px;
+  }
+
+  .scroll:hover {
+    cursor: pointer;
+  }
+
+  .margin {
+    margin-top: 30px;
+  }
+
+  /* footer */
+  .footer {
+    color: black;
+  }
+
+  footer {
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.637);
+
   }
 </style>
-<h1>Welcome to Camping Planner!</h1>
 
-<div class="overflow-auto">
-  <h2>Chose a state!</h2>
-  <ul class="list-group">
-  </ul>
-</div>
+<!-- HERO -->
+<section>
+  <div class="container background">
+    <div class="row" "overflow-auto">
+      <h1>Welcome to Camping Planner!<h1>
+          <h2> Select a state to get started...</h2>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+
+      <div class="overflow-scroll center margin">
+        <ul class="list-group scroll">
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+
+
+  </div>
+</section>
+
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -83,7 +168,7 @@
     {
       "name": "Georgia",
       "abbreviation": "GA"
-    },  
+    },
     {
       "name": "Hawaii",
       "abbreviation": "HI"

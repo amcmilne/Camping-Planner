@@ -86,7 +86,7 @@ info such as: description-address-website and the weather(based on ZipCode
         font-size: 20px;
         margin-left: 10px;
         margin-right: 10px;
-        
+
     }
 
     .navbar-toggler {
@@ -140,15 +140,13 @@ info such as: description-address-website and the weather(based on ZipCode
         float: right;
     }
 
-    .float {
-        float: right;
-        margin-top: 20px;
+    h5 {
+        text-align: center;
     }
 
-    /* footer */
-    .footer {
-        color: black;
-    }
+    h4 {
+        text-align: center;
+
 
     footer {
         margin-top: 100px;
@@ -157,15 +155,21 @@ info such as: description-address-website and the weather(based on ZipCode
         width: 100%;
     }
 
+        footer {
+            margin-top: 100px;
+            background: rgba(255, 255, 255, 0.637);
 
-    #child {
-        width: 100%;
-        height: 200px;
-        overflow-y: scroll;
-        padding-right: 25px;
-        /* Increase/decrease this value for cross-browser compatibility */
+        }
 
-    }
+
+        #child {
+            width: 100%;
+            height: 200px;
+            overflow-y: scroll;
+            padding-right: 25px;
+            /* Increase/decrease this value for cross-browser compatibility */
+
+        }
 </style>
 
 <!-- Page Content -->
@@ -214,8 +218,8 @@ info such as: description-address-website and the weather(based on ZipCode
                     <div class="input-group">
                         <input id="addEquipment" type="text" class="form-control" placeholder="Equipment Name...">
                         <span class="input-group-append">
-                            <button class="btn btn-secondary btn-blu" type="button"
-                                onclick="AddEquipment('something')">Add</button>
+                            <button   class="btn btn-secondary btn-blu" type="button"
+                                onclick="AddEquipment()">Add</button>
                         </span>
                     </div>
                 </div>
@@ -562,5 +566,9 @@ Weather Description:
     function AddEquipment() {
         let item = document.getElementById('addEquipment').value;
         document.getElementById("list-group").innerHTML += `<li data-Category="Other" data-ItemName="` + item + `">` + item + `<input id="selection" type="checkbox"></i></li>`
+
+        document.getElementById("addEquipment").value = '';
     }
+
+
 </script>

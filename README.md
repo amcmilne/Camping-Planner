@@ -15,9 +15,7 @@
 
 ### App Description:
 
-    The Camping Planner application aims to help campers prepare for their journey to any of our beautiful state parks. The applications 
-
-    Start your camping journey off right with the Camping Planner application. Camping planner's goal is to help thake
+ 
 
     Live Site Link:  https:
 

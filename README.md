@@ -17,7 +17,7 @@
 
  
 
-    Live Site Link:  https:
+Live Site Link:  https:
 
 ### App Screenshots
 
@@ -52,6 +52,6 @@
 
 
 ### Credits: 
-
+Jesse Persinger, Taylor Ceneviva, Pavel Darii, Ann Cooper-Miline, Philip DiPaula
 ### License: 
 MIT  

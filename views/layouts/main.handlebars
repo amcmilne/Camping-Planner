@@ -37,6 +37,39 @@
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
         }
+
+        footer {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.637);
+            bottom: 0px;
+            width: 100%;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        #common-footer {
+            color: Black;
+            font-size: 12px;
+
+        }
+
+        strong {
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .text-white {
+            font-size: 15px;
+        }
+
+        .no-style {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        .no-style:hover {
+            text-decoration: none;
+        }
     </style>
 
     <title>Camping Planner</title>
@@ -45,7 +78,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <p class="navbar-brand navbar-item">Camping Planner</p>
+            <p class="navbar-brand navbar-item"><a class="no-style" href="/welcome">Camping Planner</a></p>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -78,11 +111,11 @@
     <footer>
         <div class="container">
             <div class="text-center ">
-                <span class="footer">
+                <span id="common-footer">
                     <strong class="text-white">Camping Planner</strong> by: Pavel Darii, Ann Cooper-Miline, Jesse
                     Persinger, Taylor Ceneviva, Philip DiPaula. The source code is licensed
                     <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-                    <strong class="m-0 text-center text-white">Copyright &copy; Camping-Planner</strong>
+                    <strong class=" text-white">Copyright &copy; Camping-Planner</strong>
                 </span>
             </div>
         </div>

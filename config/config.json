@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "webapi",
+    "username": "root",
 
-    "password": "password123",
+    "password": "root",
 
     "database": "campaignPlanner_DB",
     "host": "localhost",
